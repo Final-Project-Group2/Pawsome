@@ -1,0 +1,8 @@
+# Here we are ignoring the virtual env because it is not good to push it to GitHub.
+# If your virtual env has a different name, please add it here and save the file.
+
+# Ignore virtual environment directories
+venv/
+env/
+.venv/
+.env/
