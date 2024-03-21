@@ -1,0 +1,92 @@
+/* styles.css */
+
+
+html, body, header, nav, ul, li, main, footer {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+header div {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+header nav {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+.logo img {
+    height: 300px;
+
+}
+
+.header.image img {
+    max-width: 100%; 
+    padding-bottom: 60px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding-bottom: 60px;
+    font-size: x-large;
+}
+
+nav ul li {
+    margin-left: 200px;
+    
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+main {
+    padding: 20px;
+}
+
+h1{
+    text-align: center;
+}
+
+.shelter-list  img{
+    width:400px ;
+}
+
+.shelter-list{
+    display: flex;
+    
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
