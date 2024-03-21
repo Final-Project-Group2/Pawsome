@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .models import Pet, Shelter, Application
-from .serializers import PetSerializer, ShelterSerializer, ApplicationSerializer
+from .models import Pet, Application
+from .serializers import PetSerializer, ApplicationSerializer
 import django_filters
 import django_filters.rest_framework as filters
 
@@ -20,7 +20,6 @@ class ApplicationFilter(django_filters.FilterSet):
         model = Application
         fields = ['month', 'year']
 
-
 class PetListCreatView(generics.ListCreateAPIView):
     queryset = Pet.objects.all()
     serializer_class = PetSerializer
@@ -31,13 +30,6 @@ class PetDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pet.objects.all()
     serializer_class = PetSerializer
 
-class ShelterListCreatView(generics.ListCreateAPIView):
-    queryset = Shelter.objects.all()
-    serializer_class = ShelterSerializer
-
-class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Shelter.objects.all()
-    serializer_class = ShelterSerializer
 
 class ApplicationListCreatView(generics.ListCreateAPIView):
     queryset = Application.objects.all()

@@ -1,21 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from user_managment_app.models import CustomUser
+from user_managment_app.models import CustomUser, Shelter
 
 # Create your models here.
-class Shelter(models.Model):
-    name = models.CharField(max_length=50)
-    street_address = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
-    phone_number = models.CharField(max_length=20)
-    image = models.ImageField(upload_to='shelters_images')
-    website = models.CharField(max_length=100, null=True)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
 
 class Pet(models.Model):
     SPECIES_CHOICES = [
@@ -52,7 +39,7 @@ class Pet(models.Model):
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     published_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
-    shelter_id = models.ForeignKey(Shelter, on_delete=models.CASCADE)
+    shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} ({self.species})"
@@ -65,4 +52,9 @@ class Application(models.Model):
 
     def __str__(self):
         return f"{self.user} ({self.pet})"
+    
+    def save(self, *args, **kwargs):
+        self.pet.status = 'pending_adoption'
+        self.pet.save()
+        super().save(*args, **kwargs)
 

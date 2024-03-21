@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .models import CustomUser
-from .serializers import CustomUserSerializer
+from .models import CustomUser, Shelter
+from .serializers import CustomUserSerializer, ShelterSerializer
 import django_filters
 import django_filters.rest_framework as filters
 
@@ -22,3 +22,11 @@ class CustomUserListCreatView(generics.ListCreateAPIView):
 class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+
+class ShelterListCreatView(generics.ListCreateAPIView):
+    queryset = Shelter.objects.all()
+    serializer_class = ShelterSerializer
+
+class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Shelter.objects.all()
+    serializer_class = ShelterSerializer
