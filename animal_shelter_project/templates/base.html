@@ -1,12 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Pawsome{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -14,13 +16,13 @@
         </div>
 
         <div class="header image">
-            <img src="{% static 'img/header.png' %}" alt="animals">
+            <img src="{% static 'img/header.png' %}" alt="animals">11
         </div>
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'animal_shelter_app:shelter_list' %}">Shelters</a></li>
-                
+                <li><a href="{% url 'user_managment_app:shelter_list' %}">Shelters</a></li>
+
             </ul>
         </nav>
     </header>
@@ -36,4 +38,5 @@
 
     <script src="{% static 'js/ajax.js' %}"></script>
 </body>
+
 </html>

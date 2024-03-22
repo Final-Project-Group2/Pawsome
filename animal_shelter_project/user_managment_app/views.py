@@ -3,6 +3,7 @@ from .models import CustomUser, Shelter
 from .serializers import CustomUserSerializer, ShelterSerializer
 import django_filters
 import django_filters.rest_framework as filters
+from django.shortcuts import render
 
 class UserFilter(django_filters.FilterSet):
     username = filters.CharFilter(field_name='username')
@@ -27,6 +28,16 @@ class ShelterListCreatView(generics.ListCreateAPIView):
     queryset = Shelter.objects.all()
     serializer_class = ShelterSerializer
 
+    def get(self, request, *args, **kwargs):# added by mohsen
+        #url = reverse('animal_shelter_app:shelter_detail', args=['pk'])
+        shelters = self.get_queryset()
+        return render(request, 'shelter_list.html', {'shelters': shelters })  #, 'url' : url})
+
 class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Shelter.objects.all()
     serializer_class = ShelterSerializer
+
+    def get(self, request, *args, **kwargs):# added by mohsen
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return render(request, 'shelter_detail.html', {'serializer': serializer.data})

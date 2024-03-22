@@ -1,5 +1,9 @@
 from django.urls import path
-from .views import PetListCreatView, PetDetailView, ShelterListCreatView, ShelterDetailView, ApplicationListCreatView, ApplicationDetailView
+from .views import PetListCreatView, PetDetailView, ApplicationListCreatView, ApplicationDetailView
+from django.conf.urls.static import static
+from django.conf import settings
+
+app_name = 'animal_shelter_app'
 
 urlpatterns =[
     path('pets/', PetListCreatView.as_view(), name='pet_list'),

@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import CustomUserListCreatView, CustomUserDetailView, ShelterListCreatView, ShelterDetailView
 
-name_app = "user_managment_app"
+app_name = "user_managment_app"
 
 urlpatterns =[
     path('shelters/', ShelterListCreatView.as_view(), name='shelter_list'),
