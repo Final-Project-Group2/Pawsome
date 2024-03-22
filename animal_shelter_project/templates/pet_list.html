@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Pets</title>
+</head>
+<body>
+    <h1>List of Pets</h1>
+    <ul>
+        {% for pet in pets %}
+            <li>{{ pet.name }}, {{ pet.species }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
