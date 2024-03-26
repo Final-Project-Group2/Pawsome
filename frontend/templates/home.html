@@ -1,0 +1,28 @@
+{% extends "index.html" %}{% block content %}{% load static %}
+
+<h1 align="center">Welcome to our shelter website</h1>
+
+
+
+<div class="p-3 shadow">
+      {% if pets != None %}
+      {% for pet in pets %}
+      <div class="mycard mt-1 fs-4 shadow bg-card">
+            <h1>details</h1>
+            <div class="row">
+                  <div class="col">
+                        <img src="{%static 'media/squarelogo.png' %}" alt="Not found" class="foto">
+                  </div>
+                  <div class="col">
+                        <p>Name : {{pet.name}}<br>Specie : {{pet.species}} <br>Breed : {{pet.size}} <br>Description :
+                              fflflflfl</p>
+                  </div>
+            </div>
+
+      </div>
+      {% endfor %}
+      {% endif %}
+</div>
+{% include 'story_cotrib.html'%}
+
+{% endblock content %}

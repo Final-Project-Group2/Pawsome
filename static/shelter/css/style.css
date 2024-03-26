@@ -1,0 +1,79 @@
+.light {
+      background-color: beige;
+      color: black;
+}
+
+.sadow {
+      box-shadow: 10px 10px 5px 5px black;
+}
+
+.height-10 {
+      min-height: 100vh;
+      height: 100%;
+}
+
+.widht-10 {
+      width: 100vw;
+      min-width: 100vw;
+}
+
+.widht-4 {
+      max-width: 25%;
+}
+
+.darklight {
+      background-color: #F8F9FAB5;
+}
+
+.bg-card {
+      background-color: rgba(220, 220, 179, 0.5);
+}
+
+.mycard {
+
+      border: 20cap;
+      width: 70%;
+      margin: 0 auto;
+      padding: 5px 10px;
+      color: #555;
+}
+
+.height3 {
+      max-height: 35vh;
+      height: 35vh;
+}
+
+.height2 {
+      max-height: 20vh;
+      height: 20vh;
+}
+
+.fit {
+      height: fit-content;
+      width: fit-content;
+}
+
+
+
+.foto {
+      width: 85%;
+      height: 85%;
+}
+
+.fotostory {
+      max-width: 40%;
+      width: 100px;
+      max-height: 50%;
+}
+
+.contributorimg {
+      max-height: 80%;
+}
+
+.bold {
+      font-weight: bolder;
+}
+
+.font-fam {
+      font-family: 'Times New Roman', Times, serif;
+}

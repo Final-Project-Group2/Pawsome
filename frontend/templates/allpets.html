@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+
+
+
+{% block content %}
+{% for pet in pets %}
+<p>{{pet}}</p>
+{% endfor %}
+
+<form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" name="submitpet" value="submitpet">
+</form>
+
+{% endblock content %}
