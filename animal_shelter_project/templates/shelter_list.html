@@ -2,35 +2,26 @@
 {% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shelters List</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
 </head>
 
 <body>
     {% block content %}
-    <h1>Shelters List</h1>
-    <div class="shelter-list">
-        <ul>
-            {% for shelter in shelters %}
-            <ul><a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
-                    <h2>{{ shelter.name }}</h2>
-                    <img src="{{ MEDIA_URL }}{{ shelter.image.url }}" alt="{{ shelter.name }} picture"
-                        class="shelter-image">
-                </a>
-            </ul>
-            <!-- <li><a href="{{ url }}"><h2>{{shelter.name}}</h2></a></li>!-->
-            {% endfor %}
-    </div>
+        <h1>Shelters List</h1>
+        <div class="shelter-list">
+                {% for shelter in shelters %}
+                    <ul><a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
+                    <h2>{{ shelter.name }} </h2>
+                    <img src="{{ shelter.image.url }}" alt="{{ shelter.name }} picture"
+                        class="shelter-image">    
+                     </a>
+                    </ul>
+                {% endfor %}
+        </div>
     {% endblock %}
-    </ul>
-
 </body>
-
-</html>

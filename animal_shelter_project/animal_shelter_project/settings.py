@@ -142,9 +142,7 @@ AUTH_USER_MODEL = 'user_managment_app.CustomUser'
 
 #STATICFILES_DIRS = [os.path.join(BASE_DIR,'/static/')]
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static/"),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 #137-140 added by mohsen
 # REST_FRAMEWORK = {
 #     'DEFAULT_RENDERER_CLASSES': (

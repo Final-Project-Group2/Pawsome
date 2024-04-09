@@ -4,6 +4,10 @@ from .serializers import CustomUserSerializer, ShelterSerializer
 import django_filters
 import django_filters.rest_framework as filters
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.conf import settings
+from animal_shelter_app.models import Pet
+from animal_shelter_app.serializers import PetSerializer
 
 class UserFilter(django_filters.FilterSet):
     username = filters.CharFilter(field_name='username')
@@ -33,11 +37,28 @@ class ShelterListCreatView(generics.ListCreateAPIView):
         shelters = self.get_queryset()
         return render(request, 'shelter_list.html', {'shelters': shelters })  #, 'url' : url})
 
+# class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Shelter.objects.all()
+#     serializer_class = ShelterSerializer
+
+#     def get(self, request, *args, **kwargs):# added by mohsen
+#         instance = self.get_object()
+#         serializer = self.get_serializer(instance)
+#         return render(request, 'shelter_detail.html', {'serializer': serializer.data})
+    
+
+
 class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Shelter.objects.all()
     serializer_class = ShelterSerializer
 
-    def get(self, request, *args, **kwargs):# added by mohsen
+    def get(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
-        return render(request, 'shelter_detail.html', {'serializer': serializer.data})
+
+        # Retrieve pets in this shelter
+        dogs = Pet.objects.filter(shelter=instance, species='dog')
+        cats = Pet.objects.filter(shelter=instance, species='cat')
+    
+
+        return render(request, 'shelter_detail.html', {'serializer': serializer.data, 'dogs': dogs, 'cats': cats, })
