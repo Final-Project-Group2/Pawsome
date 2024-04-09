@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock title %}
+{% block content %}
+<p>Would you like to register as a user or shelter?</p>
+<ul>
+    <li><a href="{% url 'user_managment_app:signup_customuser' %}">Register as a User</a></li>
+    <li><a href="{% url 'user_managment_app:signup_shelter' %}">Register as a Shelter</a></li>
+</ul>
+{% endblock content %}

@@ -1,7 +1,14 @@
 /* styles.css */
 
 
-html, body, header, nav, ul, li, main, footer {
+html,
+body,
+header,
+nav,
+ul,
+li,
+main,
+footer {
     margin: 0;
     padding: 0;
 }
@@ -38,7 +45,7 @@ header nav {
 }
 
 .header.image img {
-    max-width: 100%; 
+    max-width: 100%;
     padding-bottom: 60px;
 }
 
@@ -51,7 +58,7 @@ nav ul {
 
 nav ul li {
     margin-left: 200px;
-    
+
 }
 
 nav ul li a {
@@ -70,17 +77,17 @@ main {
     padding: 20px;
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
-.shelter-list  img{
-    width:400px ;
+.shelter-list img {
+    width: 400px;
 }
 
-.shelter-list{
+.shelter-list {
     display: flex;
-    
+
 }
 
 footer {
@@ -89,4 +96,3 @@ footer {
     text-align: center;
     padding: 10px;
 }
-
