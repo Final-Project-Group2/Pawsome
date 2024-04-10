@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    "crispy_forms",
+    "crispy_bootstrap5",
     "rest_framework",
     'animal_shelter_app.apps.AnimalShelterAppConfig',
     'user_managment_app.apps.UserManagmentAppConfig'
@@ -137,8 +139,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_managment_app.CustomUser'
 
+#AUTHENTICATION_BACKENDS = [
+    #'django.contrib.auth.backends.ModelBackend',  # Default Django authentication backend
+    #'user_managment_app.auth_backend.ShelterBackend',  # Custom authentication backend for Shelter model
+#]
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
+
 #STATIC_ROOT = os.path.join (BASE_DIR, "static")
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 #STATICFILES_DIRS = [os.path.join(BASE_DIR,'/static/')]
 STATIC_URL = '/static/'
@@ -150,3 +162,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 #         'rest_framework.renderers.BrowsableAPIRenderer',
 #     )
 # }
+
