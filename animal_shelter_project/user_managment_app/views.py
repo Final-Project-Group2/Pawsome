@@ -3,13 +3,11 @@ from .models import CustomUser, Shelter
 from .serializers import CustomUserSerializer, ShelterSerializer
 import django_filters
 import django_filters.rest_framework as filters
-<<<<<<< HEAD
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from animal_shelter_app.models import Pet
 from animal_shelter_app.serializers import PetSerializer
-=======
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, View, ListView, TemplateView
 from .forms import CustomUserForm, ShelterSignUpForm, CustomUserChangeForm, ShelterChangeForm 
@@ -19,7 +17,6 @@ from django.contrib.auth.hashers import check_password, make_password, get_hashe
 from django.contrib.auth import authenticate, login
 from .forms import ShelterSignUpForm
 from django.db import IntegrityError
->>>>>>> beta
 
 class UserFilter(django_filters.FilterSet):
     username = filters.CharFilter(field_name='username')
@@ -67,7 +64,6 @@ class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
-<<<<<<< HEAD
 
         # Retrieve pets in this shelter
         dogs = Pet.objects.filter(shelter=instance, species='dog')
@@ -75,7 +71,6 @@ class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
     
 
         return render(request, 'shelter_detail.html', {'serializer': serializer.data, 'dogs': dogs, 'cats': cats, })
-=======
         return render(request, 'shelter_detail.html', {'serializer': serializer.data})
 
 class SignUpView(TemplateView):
@@ -164,4 +159,3 @@ class ShelterProfileView(ListView):
         context['profile'] = profile
 
         return context
->>>>>>> beta
