@@ -15,8 +15,12 @@ def adoption_preference_form_view(request):
             # Interact with the OpenAI API to get recommendations
             openai_response = get_openai_response(openai_query)
 
+            # Filter out any matches that are not likely breed names
+            #recommended_breeds = extract_recommended_breeds(openai_response)
+
             # Render the response in the template
-            return render(request, 'adoption_preference_result.html', {'openai_response': openai_response})
+            return render(request, 'adoption_preference_result.html', {'openai_response': openai_response }) 
+            #return render(request, 'adoption_preference_result.html', {'openai_response': openai_response, 'recommended_breeds': recommended_breeds }) 
     else:
         form = AdoptionPreferenceForm()
 

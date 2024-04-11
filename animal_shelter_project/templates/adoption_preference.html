@@ -4,7 +4,9 @@
 {% block content %}
 
 <section class="details-section">
-    <h1>Adoption Preference</h1>
+    <h1>Adoption Preference Assistemnt</h1>
+    <p>Please provide your preference to receive recommendations for pet breeds that will be suitable for your
+        lifestyle.</p>
     <form action="" method="post" style="width: 35%; margin-left: 20%;" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form | crispy }}

@@ -12,13 +12,6 @@ class AdoptionPreferenceForm(forms.Form):
         ('large', 'Large'),
     ]
 
-    AGE_CHOICES = [
-        ('any', 'Any Age'),
-        ('young', 'Young (0-2 years)'),
-        ('adult', 'Adult (3-8 years)'),
-        ('senior', 'Senior (9+ years)'),
-    ]
-
     ACTIVITY_CHOICES = [
         ('high', 'High-energy'),
         ('medium', 'Medium-energy'),
@@ -48,12 +41,11 @@ class AdoptionPreferenceForm(forms.Form):
         ('4', '3+ hours'),
     ]
 
-    pet_type = forms.ChoiceField(label='Pet Type', choices=PET_CHOICES)
-    size = forms.ChoiceField(label='Size', choices=SIZE_CHOICES)
-    age = forms.ChoiceField(label='Age', choices=AGE_CHOICES)
-    activity_level = forms.ChoiceField(label='Activity Level', choices=ACTIVITY_CHOICES)
-    temperament = forms.ChoiceField(label='Temperament', choices=TEMPERAMENT_CHOICES)
-    compatibility = forms.CharField(label='Compatibility with Other Pets or Children', max_length=250)
-    grooming = forms.ChoiceField(label='Grooming Needs', choices=GROOMING_CHOICES)
-    living_environment = forms.ChoiceField(label='Living Environment', choices=ENVIRONMENT_CHOICES)
-    time_commitment = forms.ChoiceField(label='Time Commitment', choices=TIME_CHOICES)
+    pet_type = forms.ChoiceField(label='Do you want a dog or cat? Please choose the pet type:', choices=PET_CHOICES)
+    size = forms.ChoiceField(label='Now consider size: How big will the pet be when fully grown?', choices=SIZE_CHOICES)
+    activity_level = forms.ChoiceField(label='How active will the pet be? Please choose the activity level:', choices=ACTIVITY_CHOICES)
+    temperament = forms.ChoiceField(label='What temperament are you looking for in a pet?', choices=TEMPERAMENT_CHOICES)
+    compatibility = forms.CharField(label='It is important for your new pet to get along with other family members. Please describe compatibility with other pets or children:', max_length=250)
+    grooming = forms.ChoiceField(label='Consider grooming needs: Please choose grooming level:', choices=GROOMING_CHOICES)
+    living_environment = forms.ChoiceField(label='Will your pet live in an apartment or a house? Please choose the living environment:', choices=ENVIRONMENT_CHOICES)
+    time_commitment = forms.ChoiceField(label='How much time can you commit to spending with your new buddy? Please choose the time commitment:', choices=TIME_CHOICES)
