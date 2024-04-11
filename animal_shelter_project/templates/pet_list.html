@@ -15,11 +15,10 @@
             <ul>
                 
                 {% for pet in pets %}
-
                     <li>
                         <a href="{% url 'animal_shelter_app:pet_detail' pet.id %}"> 
                         {{ pet.name }} - {{ pet.species }} - {{pet.age}} - 
-                        <img src="{% static './media/pets_images/olivia_E7Jj9DG.jpg' %}"  >
+                        
                         <br>
                         <img src="{{ pet.photos.url }}" alt="Pet Image">
 

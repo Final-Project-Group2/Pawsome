@@ -15,8 +15,9 @@
     {% block content %}
         <h1>Shelter Detail</h1>
         <h2>Name: {{ serializer.name }}</h2>
-        <h2>Location: {{ serializer.country }}</h2>
-        <h2>Dogs in {{serializer.name}}</h2>
+        <h2>Location: {{ serializer.city }}</h2>
+        <h2>Dogs in {{serializer.shelter_name}}</h2>
+        {{serializer.description}}
     <ul>
         {% for dog in dogs %}
             <li>

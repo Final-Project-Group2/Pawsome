@@ -4,6 +4,7 @@
 <head>
     <title>Home page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 
@@ -12,10 +13,10 @@
     <h1>Welcome to Pawsome</h1>
     
     <div class="row">
-        <div class="home_page">
-            <img src="{% static 'img/black-dog.png' %}" alt="blabk dog" class="img-fluid-right">
+        <div class="col-md-6">
+            <img src="{% static 'img/black-dog.png' %}" alt="black dog" class="img-fluid">
         </div>
-        <div class="home_page">
+        <div class="col-md-6">
             <h2>About Us</h2>
             <p>Welcome to Pawsome, where we're dedicated to finding loving homes for every furry friend in need.
             At Pawsome, we believe that every animal deserves a second chance at happiness.
@@ -33,9 +34,9 @@
         </div>
     </div>
 
-    <div class="home_page">
+    <div class="row">
         <div class="col-md-6 order-md-2">
-            <img src="{% static 'img/cat-homepage.png' %}" alt="a cat image" class="img-fluid-left">
+            <img src="{% static 'img/cat-homepage.png' %}" alt="a cat image" class="img-fluid">
         </div>
     </div>
 </div>

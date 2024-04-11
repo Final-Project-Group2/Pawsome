@@ -1,24 +1,6 @@
 /* styles.css */
 
 
-<<<<<<< HEAD
-html, body, header, nav, ul, li, main, footer {
-    padding: 10px;
-=======
-html,
-body,
-header,
-nav,
-ul,
-li,
-main,
-footer {
-    margin: 0;
-    padding: 0;
->>>>>>> beta
-}
-
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -28,11 +10,11 @@ body {
 
 header div {
     background-color: #fff;
-    padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 60px;
 
 }
 
@@ -87,9 +69,10 @@ main {
 
 h1 {
     text-align: center;
+    padding-bottom: 100px;
+    padding-top: 100px;
 }
 
-<<<<<<< HEAD
 
 /* Shelter list styles */
 
@@ -98,7 +81,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     
-=======
 .shelter-list img {
     width: 400px;
 }
@@ -106,7 +88,6 @@ h1 {
 .shelter-list {
     display: flex;
 
->>>>>>> beta
 }
 
 .shelter-item {
@@ -229,12 +210,12 @@ button[type="submit"]:hover {
     padding: 10px;
 }
 
-/* Optionally, add border to the images */
+
 .img-fluid {
-    border: 2px solid #ddd; /* Example border */
-    border-radius: 8px; /* Optional: add border radius */
-    max-width: 100%; /* Ensure images don't overflow */
-    height: auto; /* Maintain aspect ratio */
+    border: 2px solid #ddd; 
+    border-radius: 8px;
+    width: 100px;
+    height: 100px; 
 }
 
 .home_page img{
