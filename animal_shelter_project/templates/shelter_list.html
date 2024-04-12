@@ -15,22 +15,29 @@
 
 <body>
     {% block content %}
-    <h1>Shelters List</h1>
-    <div class="shelter-list">
-        <ul>
-            {% for shelter in shelters %}
-            <ul><a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
-                    <h2>{{ shelter.name }}</h2>
-                    <img src="{{ MEDIA_URL }}{{ shelter.image.url }}" alt="{{ shelter.name }} picture"
-                        class="shelter-image">
-                </a>
-            </ul>
-            <!-- <li><a href="{{ url }}"><h2>{{shelter.name}}</h2></a></li>!-->
-            {% endfor %}
-    </div>
+        <h1>Shelters List</h1>
+        <div class="shelter-list">
+                {% for shelter in shelters %}
+                    {% for user in users %}
+                        {% if user.id == shelter.user_id %}
+                            <ul><a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
+                            <h2>{{shelter.shelter_name}}</h2>
+                            <br>  
+                            <h2></h2>
+
+                        {% endif %}
+                {% endfor %}
+                    <h2></h2>
+                    <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ shelter.shelter_name }} picture" class="shelter-image"> 
+                     </a>
+                    </ul>
+                {% endfor %}
+        </div>
+    
     {% endblock %}
     </ul>
 
 </body>
 
-</html>
+   
+      

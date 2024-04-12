@@ -4,11 +4,26 @@
     <title>List of Pets</title>
 </head>
 <body>
-    <h1>List of Pets</h1>
-    <ul>
-        {% for pet in pets %}
-            <li>{{ pet.name }}, {{ pet.species }}</li>
-        {% endfor %}
-    </ul>
+    {% block content %}
+        <div class="container">
+            <h1>Pet List</h1>
+            <ul>
+                
+                {% for pet in pets %}
+                    <li>
+                        <a href="{% url 'animal_shelter_app:pet_detail' pet.id %}"> 
+                        {{ pet.name }} - {{ pet.species }} - {{pet.age}} - 
+                        
+                        <br>
+                        <img src="{{ pet.photos.url }}" alt="Pet Image">
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock %}
+    
+ <!-->   
+    </!--> 
 </body>
 </html>

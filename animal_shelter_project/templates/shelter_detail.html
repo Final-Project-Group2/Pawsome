@@ -14,8 +14,46 @@
 <body>
     {% block content %}
         <h1>Shelter Detail</h1>
+<<<<<<< HEAD
         <p>Name: {{ shelter.name }}</p>
         <p>Location: {{ shelter.country }}</p>
+=======
+        <h2>Name: {{ serializer.name }}</h2>
+        <h2>Location: {{ serializer.city }}</h2>
+        <h2>Dogs in {{serializer.shelter_name}}</h2>
+        {{serializer.description}}
+    <ul>
+        {% for dog in dogs %}
+            <li>
+                <a href="{% url 'animal_shelter_app:pet_detail' dog.id %}"> 
+                {{ dog.name }}-{{dog.age}} - 
+                </a>
+            </li>
+            
+            <img src="{{ dog.photos.url }}" alt="{{ dog.name }} Photo" style="max-width: 200px;">
+            <br>
+            {{dog.description}} 
+             
+
+        {% endfor %}
+    </ul>
+    
+    <h2>Cats in {{serializer.name}}</h2>
+    <ul>
+        {% for cat in cats %}
+            <li>
+                <a href="{% url 'animal_shelter_app:pet_detail' cat.id %}"> 
+                {{ cat.name }}-{{cat.age}} - 
+                </a>
+            </li>
+            <img src="{{ cat.photos.url }}" alt="{{ pet.name }} picture">
+            {{cat.description}}
+            
+        {% endfor %}
+    </ul>
+        <!-- Button to add pet -->
+        <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn">Add Pet</a>
+>>>>>>> 09db325 (pushing update)
     {% endblock %}
 
     <!-- Add more fields as necessary -->

@@ -26,7 +26,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 class ShelterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shelter
-        fields = ['id', 'name', 'street_address', 'city', 'country', 'email', 'phone_number', 'image', 'website', 'description']
+        fields = ['id', 'shelter_name', 'user', 'website', 'description']
 
         def validate_email(self, value):
             try:
