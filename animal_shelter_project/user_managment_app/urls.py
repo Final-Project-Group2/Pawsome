@@ -1,5 +1,9 @@
 from django.urls import path
 from .views import *
+from .views import CustomUserListCreatView, CustomUserDetailView, ShelterListCreatView, ShelterDetailView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 app_name = "user_managment_app"
 
@@ -17,3 +21,5 @@ urlpatterns =[
     path('edit_shelter_profile/', EditShelterProfileView.as_view(), name='edit_shelter_profile'),
     path('shelter_profile/', ShelterProfileView.as_view(), name='shelter_profile'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
