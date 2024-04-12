@@ -18,7 +18,7 @@ def generate_openai_query(form_data):
     return query
 
 def get_openai_response(openai_query):
-    client = OpenAI()
+    #client = OpenAI()
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
