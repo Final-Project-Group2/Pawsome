@@ -4,6 +4,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import *
+from .views import CustomUserListCreatView, CustomUserDetailView, ShelterListCreatView, ShelterDetailView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 app_name = "user_managment_app"
 
