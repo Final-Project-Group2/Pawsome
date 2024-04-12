@@ -4,19 +4,20 @@
 <head>
     <title>Home page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 
 {% block content %}
 <div class="container">
     <h1>Welcome to Pawsome</h1>
+<div class="container">
+    <h1>Welcome to Pawsome</h1>
     
     <div class="row">
-        <div class="col-md-6">
-            <img src="{% static 'img/black-dog.png' %}" alt="black dog" class="img-fluid">
+        <div class="home_page">
+            <img src="{% static 'img/black-dog.png' %}" alt="blabk dog" class="img-fluid-right" style="width: 200px; height: 200px;">
         </div>
-        <div class="col-md-6">
+        <div class="home_page">
             <h2>About Us</h2>
             <p>Welcome to Pawsome, where we're dedicated to finding loving homes for every furry friend in need.
             At Pawsome, we believe that every animal deserves a second chance at happiness.
@@ -28,15 +29,20 @@
             We are committed to promoting responsible pet ownership, spaying/neutering, and ending animal homelessness.
             At Pawsome, we work tirelessly to provide shelter, care, and compassion to animals in need, ensuring they find their forever homes.
             Join us in our mission to make the world a better place, one adoption at a time.</p>
+            <h2>Our Mission</h2>
+            <p> Our mission at Pawsome is simple: to match deserving animals with loving families and create lifelong bonds.
+            We are committed to promoting responsible pet ownership, spaying/neutering, and ending animal homelessness.
+            At Pawsome, we work tirelessly to provide shelter, care, and compassion to animals in need, ensuring they find their forever homes.
+            Join us in our mission to make the world a better place, one adoption at a time.</p>
 
             <h2>How to adopt</h2>
             <p> </p>
         </div>
     </div>
 
-    <div class="row">
+    <div class="home_page">
         <div class="col-md-6 order-md-2">
-            <img src="{% static 'img/cat-homepage.png' %}" alt="a cat image" class="img-fluid">
+            <img src="{% static 'img/cat-homepage.png' %}" alt="a cat image" class="img-fluid-left" style="width: 200px; height: 200px;">
         </div>
     </div>
 </div>

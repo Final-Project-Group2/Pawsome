@@ -14,6 +14,10 @@
 <body>
     {% block content %}
         <h1>Shelter Detail</h1>
+<<<<<<< HEAD
+        <p>Name: {{ shelter.name }}</p>
+        <p>Location: {{ shelter.country }}</p>
+=======
         <h2>Name: {{ serializer.name }}</h2>
         <h2>Location: {{ serializer.city }}</h2>
         <h2>Dogs in {{serializer.shelter_name}}</h2>
@@ -49,6 +53,7 @@
     </ul>
         <!-- Button to add pet -->
         <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn">Add Pet</a>
+>>>>>>> 09db325 (pushing update)
     {% endblock %}
 
 </body>
