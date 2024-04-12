@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import FormView
+from django.views.generic import FormView, ListView
 from django.utils import timezone
 import django_filters
 import django_filters.rest_framework as filters
@@ -43,14 +43,20 @@ class PetListCreatView(generics.ListCreateAPIView):
         return render(request, 'pet_list.html', {'pets': pets})
     
 
-class PetDetailView(generics.RetrieveUpdateDestroyAPIView):
-     queryset = Pet.objects.all()
-     serializer_class = PetSerializer
-     
-     def get(self, request, *args, **kwargs):# added by mohsen
-        instance = self.get_object()
-        pet = self.get_serializer(instance)
-        return render(request, 'pet_detail.html', {'pet': pet.data})
+class PetDetailView(ListView):
+    model = Pet
+    template_name = "pet_detail.html" 
+    context_object_name = "pet"
+
+    def get_queryset(self):
+        return Pet.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = self.get_queryset().first()
+        context['pet'] = profile
+        return context
+            
 
 
 class ApplicationListCreatView(generics.ListCreateAPIView):

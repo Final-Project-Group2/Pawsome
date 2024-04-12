@@ -9,28 +9,38 @@
 </head>
 
 <body>
-    
+
     {% block content %}
-        <div class="container pet-detail">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture" class="img-fluid mb-4">
-                </div>
-                <div class="col-md-6">
-                    <h1>Pet Detail</h1>
-                    <h2>Name: {{ pet.name }}</h2>
-                    <h2>Species: {{ pet.species }}</h2>
-                    <h2>Breeds: {{ pet.breeds }}</h2>
-                    <h2>Age: {{ pet.age }}</h2>
-                    <h2>Gender: {{ pet.gender }}</h2>
-                    <h2>Size: {{ pet.size }}</h2>
-                    <h2>Weight: {{ pet.weight }}</h2>
-                    <h2>Description: {{ pet.description }}</h2>
-                    <h2>Status: {{ pet.status }}</h2>
-                    <h2>Shelter: {{ pet.shelter }}</h2>
-                    <a href={% url 'animal_shelter_app:adoption_form' %} class="btn btn-primary">Adopt {{ serializer.name }}</a>
-                </div>
+    <div class="container pet-detail">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture" class="img-fluid mb-4">
+            </div>
+            <div class="col-md-6">
+                <h1>Pet Detail</h1>
+                <h2>Name: {{ pet.name }}</h2>
+                <h2>Species: {{ pet.species }}</h2>
+                <h2>Breeds: {{ pet.breeds }}</h2>
+                <h2>Age: {{ pet.age }}</h2>
+                <h2>Gender: {{ pet.gender }}</h2>
+                <h2>Size: {{ pet.size }}</h2>
+                <h2>Weight: {{ pet.weight }}</h2>
+                <h2>Description: {{ pet.description }}</h2>
+                <h2>Status: {{ pet.status }}</h2>
+                <h2>Shelter: {{ pet.shelter }}</h2>
+                {% if user.is_authenticated %}
+                {% if user.is_shelter %}
+                <a href='' class="btn btn-primary">Edit Pet Profile</a>
+                {% else %}
+                <a href={% url 'animal_shelter_app:adoption_form' %} class="btn btn-primary">Adopt {{ pet.name }}</a>
+                {% endif %}
+                {% else %}
+                <h2><strong>Login to Adopt {{ pet.name }}</strong>
+                    <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
+                </h2>
+                {% endif %}
             </div>
         </div>
+    </div>
     {% endblock %}
 </body>

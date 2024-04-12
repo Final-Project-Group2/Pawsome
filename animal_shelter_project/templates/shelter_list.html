@@ -1,57 +1,16 @@
-<!-- shelters/templates/shelters/shelter_list.html -->
 {% extends "base.html" %}
 {% load static %}
 
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelters List</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-
-<body>
-    {% block content %}
-        <h1>Shelters List</h1>
-        <div class="shelter-list">
-                {% for shelter in shelters %}
-                    {% for user in users %}
-                        {% if user.id == shelter.user_id %}
-                            <ul><a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
-                            <h2>{{shelter.shelter_name}}</h2>
-                            <br>  
-                            <h2></h2>
-
-                        {% endif %}
-                {% endfor %}
-                    <h2></h2>
-                    <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ shelter.shelter_name }} picture" class="shelter-image"> 
-                     </a>
-                    </ul>
-                {% endfor %}
-        </div>
-    
-        <h1>Shelters List</h1>
-        <div class="shelter-list">
-                {% for shelter in shelters %}
-                    {% for user in users %}
-                        {% if user.id == shelter.user_id %}
-                            <ul><a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
-                            <h2>{{shelter.shelter_name}}</h2>
-                            <br>  
-                            <h2></h2>
-
-                        {% endif %}
-                {% endfor %}
-                    <h2></h2>
-                    <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ shelter.shelter_name }} picture" class="shelter-image"> 
-                     </a>
-                    </ul>
-                {% endfor %}
-        </div>
-    
-    {% endblock %}
-</body>
-
-   
-      
+{% block content %}
+<h1>Shelters List</h1>
+<div class="shelter-list">
+    {% for shelter in shelters %}
+    <ul>
+        <a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
+            <h2>{{ shelter.shelter_name }}</h2>
+            <img src="{{ user.image.url }}" alt="{{ shelter.shelter_name }} picture" class="shelter-image">
+        </a>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}

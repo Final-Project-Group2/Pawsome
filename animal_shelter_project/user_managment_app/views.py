@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from animal_shelter_app.models import Pet
 from animal_shelter_app.serializers import PetSerializer
-from django.views.generic import CreateView, View, ListView, TemplateView
+from django.views.generic import CreateView, View, ListView, TemplateView, DetailView
 from .forms import CustomUserForm, ShelterSignUpForm, CustomUserChangeForm, ShelterChangeForm 
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import LoginView
@@ -62,32 +62,31 @@ class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class ShelterListCreatView(generics.ListCreateAPIView):
     queryset = Shelter.objects.all()
-    serializer_class = ShelterSerializer
 
     def get(self, request, *args, **kwargs):
         shelters = self.get_queryset()
-        users = CustomUser.objects.filter(is_shelter = True)  
-        return render(request, 'shelter_list.html', {'shelters': shelters, 'users': users})
+        user = CustomUser.objects.filter(is_shelter = True)  
+        return render(request, 'shelter_list.html', {'shelters': shelters, 'user': user})
 
 
-class ShelterDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Shelter.objects.all()
-    serializer_class = ShelterSerializer
+class ShelterDetailView(DetailView):
+    model = Shelter
+    template_name = "shelter_detail.html"
+    context_object_name = "profile"
 
-    def get(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-        # Retrieve pets in this shelter
-        dogs = Pet.objects.filter(shelter=instance, species='dog')
-        cats = Pet.objects.filter(shelter=instance, species='cat')
-        users = CustomUser.objects.filter(is_shelter = True)  
+        # Get the shelter object
+        shelter = self.get_object()
+        
+        # Get all pets related to the shelter
+        pets = Pet.objects.filter(shelter=shelter) 
 
+        context['pets'] = pets
+        context['user'] = self.request.user
+        return context
     
-
-        return render(request, 'shelter_detail.html', {'serializer': serializer.data, 'dogs': dogs, 'cats': cats, 'users': users})
-            
-
 class SignUpView(TemplateView):
     template_name = "registration/signup.html"
 
