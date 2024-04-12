@@ -1,5 +1,6 @@
 from openai import OpenAI
 import re
+import os
 
 def generate_openai_query(form_data):
     query = f"I am looking to adopt a {form_data['pet_type']} with the following preferences:\n\n"
@@ -18,7 +19,9 @@ def generate_openai_query(form_data):
     return query
 
 def get_openai_response(openai_query):
-    #client = OpenAI()
+    client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
