@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.views.generic import FormView, ListView
 from django.utils import timezone
 import django_filters
@@ -41,7 +41,8 @@ class PetListCreatView(generics.ListCreateAPIView):
     def get(self, request, *args, **kwargs): # added by mohsen
         pets= self.get_queryset()
         return render(request, 'pet_list.html', {'pets': pets})
-    
+
+
 
 class PetDetailView(ListView):
     model = Pet
@@ -56,7 +57,6 @@ class PetDetailView(ListView):
         profile = self.get_queryset().first()
         context['pet'] = profile
         return context
-            
 
 
 class ApplicationListCreatView(generics.ListCreateAPIView):

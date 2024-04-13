@@ -22,6 +22,9 @@ class AddPetForm(forms.ModelForm):
         if commit:
             pet.save()
         return pet
+
+
+
     
 class ApplicationForm(forms.ModelForm):
     class Meta:

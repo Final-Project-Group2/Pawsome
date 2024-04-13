@@ -1,20 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<head>
-    <title>Add Pet</title>
-</head>
-<body>
-    {% block content %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Pet</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        button[type="submit"] {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
         <h1>Add a Pet</h1>
         <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        
-        <button type="submit">Submit</button>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" id="id_shelter" name="shelter" value="{{ user.profile.shelter_name }}">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-
-    {% endblock %}
+    </div>
 </body>
+
 </html>
+{% endblock %}

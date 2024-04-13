@@ -1,35 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet List</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-    {% block content %}
-        <div class="container">
-            <h1>Pet List</h1>
-            <ul>
-                
-                {% for pet in pets %}
-                    <li>
-                        <a href="{% url 'animal_shelter_app:pet_detail' pet.id %}"> 
-                        {{ pet.name }} - {{ pet.species }} - {{pet.age}} - 
-                        
-                        <br>
-                        <img src="{{ pet.photos.url }}" alt="Pet Image">
-
-                    </li>
-                {% endfor %}
-            </ul>
+    <div class="container">
+        <h1>Pet List</h1>
+        <div class="row">
+            {% for pet in pets %}
+            <div class="col-md-12">
+                <div class="pet-card">
+                    <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}"> 
+                        <h3>{{ pet.name }}</h3>
+                        <p>{{ pet.species }} - {{ pet.age }}</p>
+                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    {% endblock %}
-    
- <!-->   
-    </!--> 
+    </div>
 </body>
 
+<style>
+    /* Custom CSS */
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        margin-top: 50px;
+        text-align: center;
+    }
+    .pet-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .pet-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+</style>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

@@ -59,14 +59,13 @@ class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
             'user': normal_serializer.data
         })
 
-
 class ShelterListCreatView(generics.ListCreateAPIView):
     queryset = Shelter.objects.all()
 
     def get(self, request, *args, **kwargs):
         shelters = self.get_queryset()
-        user = CustomUser.objects.filter(is_shelter = True)  
-        return render(request, 'shelter_list.html', {'shelters': shelters, 'user': user})
+        users = CustomUser.objects.filter(is_shelter=True)  
+        return render(request, 'shelter_list.html', {'shelters': shelters, 'users': users})
 
 
 class ShelterDetailView(DetailView):
