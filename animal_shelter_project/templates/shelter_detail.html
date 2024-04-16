@@ -4,52 +4,39 @@
 
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shelter Detail</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    
+
 </head>
+
 <body>
     {% block content %}
-        <h1>Shelter Detail</h1>
-        <h2>Name: {{ serializer.name }}</h2>
-        <h2>Location: {{ serializer.country }}</h2>
-        <h2>Dogs in {{serializer.name}}</h2>
+    <h2>Pets in this shelter:</h2>
     <ul>
-        {% for dog in dogs %}
-            <li>
-                <a href="{% url 'animal_shelter_app:pet_detail' dog.id %}"> 
-                {{ dog.name }}-{{dog.age}} - 
-                </a>
-            </li>
-            
-            <img src="{{ dog.photos.url }}" alt="{{ dog.name }} Photo" style="max-width: 200px;">
-            <br>
-            {{dog.description}} 
-             
+        {% for pet in pets %}
+        <li><a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">{{ pet.name }} </a></li>
+        {% endfor %}
+    </ul>
+    <h2>Shelter Detail</h2>
+    {% if user.is_authenticated %}
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Address:</strong> {{ user.street_address }}, {{ user.city }}, {{ user.country }}</p>
+    <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+    <p><strong>Website:</strong> {{ profile.website }}</p>
+    <p><strong>Description:</strong> {{ profile.description }}</p>
+    {% else %}
+    <p>Login to see information about this shelter
+    </p>
+    <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
 
-        {% endfor %}
-    </ul>
-    
-    <h2>Cats in {{serializer.name}}</h2>
-    <ul>
-        {% for cat in cats %}
-            <li>
-                <a href="{% url 'animal_shelter_app:pet_detail' cat.id %}"> 
-                {{ cat.name }}-{{cat.age}} - 
-                </a>
-            </li>
-            <img src="{{ cat.photos.url }}" alt="{{ pet.name }} picture">
-            {{cat.description}}
-            
-        {% endfor %}
-    </ul>
-        <!-- Button to add pet -->
-        <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn">Add Pet</a>
+    {% endif %}
+
     {% endblock %}
 
 </body>
-</html>
 
+</html>

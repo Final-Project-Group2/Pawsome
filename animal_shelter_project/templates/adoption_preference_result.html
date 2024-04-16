@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Adoption Preference Results</h1>
+<div>
+    <p>{{ openai_response }}</p>
+</div>
+
+{% endblock content %}

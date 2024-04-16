@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PetListCreatView, PetDetailView, ApplicationListCreatView, ApplicationDetailView, AddPetView, AdoptionFormView
+from .views import PetListCreatView, PetDetailView, ApplicationListCreatView, ApplicationDetailView, AddPetView, AdoptionFormView, ThankYouView
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -13,8 +13,10 @@ urlpatterns =[
     path('applications/', ApplicationListCreatView.as_view(), name='application_list'),
     path('application/<int:pk>/', ApplicationDetailView.as_view(), name='application_detail'),
     path('adoption-form/', AdoptionFormView.as_view(), name='adoption_form'), # added by mohsen
+    path('adoption_thank_you/', ThankYouView.as_view(), name='adoption_thank_you'), # added by mohsen
 
 ]
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # added by mohsen
+

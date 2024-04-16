@@ -5,12 +5,39 @@
 {% block content %}
 
 <section class="details-section">
+    <img src="{% static 'img/dog-head.jpg' %}" alt="dog-head" class="login-image">
     <h2>Log In</h2>
-    <form method="post">
+    <form method="post" class="needs-validation" novalidate>
         {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit">Log In</button>
+        <div class="form-group">
+            {{ form.username|as_crispy_field }}
+        </div>
+        <div class="form-group">
+            {{ form.password|as_crispy_field }}
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
         <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
     </form>
 </section>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .details-section {
+        margin: 50px auto;
+        width: 80%;
+        max-width: 600px;
+    }
+    .details-section h2 {
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .login-image {
+        width: 100%; /* Adjust the width as needed */
+        display: block; /* Make sure the image is displayed as a block element */
+        margin-bottom: 20px; /* Add some bottom margin */
+    }
+</style>
+
 {% endblock content %}

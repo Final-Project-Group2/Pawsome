@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "rest_framework",
     'animal_shelter_app.apps.AnimalShelterAppConfig',
-    'user_managment_app.apps.UserManagmentAppConfig'
+    'user_managment_app.apps.UserManagmentAppConfig',
+    'openai_app.apps.OpenaiAppConfig',
 ]
 
 REST_FRAMEWORK = {
