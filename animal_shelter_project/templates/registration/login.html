@@ -5,6 +5,7 @@
 {% block content %}
 
 <section class="details-section">
+    <img src="{% static 'img/dog-head.jpg' %}" alt="dog-head" class="login-image">
     <h2>Log In</h2>
     <form method="post" class="needs-validation" novalidate>
         {% csrf_token %}
@@ -30,6 +31,12 @@
     }
     .form-group {
         margin-bottom: 20px;
+    }
+
+    .login-image {
+        width: 100%; /* Adjust the width as needed */
+        display: block; /* Make sure the image is displayed as a block element */
+        margin-bottom: 20px; /* Add some bottom margin */
     }
 </style>
 

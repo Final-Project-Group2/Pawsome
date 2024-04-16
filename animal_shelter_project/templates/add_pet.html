@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <!DOCTYPE html>
@@ -35,11 +36,12 @@
 <body>
     <div class="container">
         <h1>Add a Pet</h1>
-        <form method="post">
+      
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="hidden" id="id_shelter" name="shelter" value="{{ user.profile.shelter_name }}">
+            {{ form|crispy }}
             <button type="submit" class="btn btn-primary">Submit</button>
+            
         </form>
     </div>
 </body>
