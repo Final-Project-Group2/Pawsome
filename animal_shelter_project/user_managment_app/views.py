@@ -128,6 +128,7 @@ class EditCustomUserProfileView(View):
 class EditShelterProfileView(View):
     template_name = 'edit_shelter_profile.html'
     success_url = reverse_lazy("shelter_profile")
+    
     def get(self, request):
         user = request.user
         form = ShelterChangeForm(instance=user)
