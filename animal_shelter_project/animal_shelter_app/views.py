@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from django.views.generic import FormView, CreateView, TemplateView, UpdateView
+from django.views.generic import FormView, CreateView, TemplateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from rest_framework import generics
 from .models import Pet, Application
@@ -58,17 +58,26 @@ class PetListCreatView(generics.ListCreateAPIView):  # added by mohsen
 #         return render(request, 'pet_list.html', {'pets': pets})
 
 
-class PetDetailView(generics.RetrieveUpdateDestroyAPIView):
-     queryset = Pet.objects.all()
-     serializer_class = PetSerializer
-     
-     def get(self, request, *args, **kwargs):# added by mohsen
-        instance = self.get_object()
-        pet = self.get_serializer(instance)
-        relative_path = urlparse(pet.data['photos']).path
-        shelter_name = instance.shelter.shelter_name if instance.shelter else None
+class PetDetailView(DetailView):
+    model = Pet
+    template_name = 'pet_detail.html'
+    context_object_name = 'pet'
 
-        return render(request, 'pet_detail.html', {'pet': pet.data , 'pet_photo_path': relative_path , 'shelter_name': shelter_name})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        shelter = None
+
+
+        if user.is_authenticated and user.is_shelter:
+            try:
+                shelter = Shelter.objects.get(user=user)
+            except Shelter.DoesNotExist:
+                pass 
+
+        context['shelter'] = shelter
+        return context
+
 
 
 class AddPetView(LoginRequiredMixin, CreateView):
