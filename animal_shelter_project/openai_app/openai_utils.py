@@ -36,11 +36,11 @@ def get_openai_response(openai_query):
     return response_text
 
 
-#def extract_recommended_breeds(response_text):
-    #pattern = r'\*\*(.*?)\*\*'
+def extract_recommended_breeds(response_text):
+    pattern = r'\*\*(.*?)\*\*'
 
-    #matches = re.findall(pattern, response_text)
+    matches = re.findall(pattern, response_text)
 
-    #recommended_breeds = [match.strip() for match in matches if len(match.split()) > 1]
+    recommended_breeds = [match.strip() for match in matches]
 
-    #return recommended_breeds
+    return recommended_breeds

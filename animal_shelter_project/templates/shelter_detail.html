@@ -2,9 +2,6 @@
 {% load static %}
 
 
-
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,30 +10,68 @@
 
 </head>
 
-<body>
-    {% block content %}
-    <h2>Pets in this shelter:</h2>
-    <ul>
-        {% for pet in pets %}
-        <li><a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">{{ pet.name }} </a></li>
-        {% endfor %}
-    </ul>
-    <h2>Shelter Detail</h2>
-    {% if user.is_authenticated %}
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Address:</strong> {{ user.street_address }}, {{ user.city }}, {{ user.country }}</p>
-    <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
-    <p><strong>Website:</strong> {{ profile.website }}</p>
-    <p><strong>Description:</strong> {{ profile.description }}</p>
-    {% else %}
-    <p>Login to see information about this shelter
-    </p>
-    <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
 
-    {% endif %}
+{% block content %}
+<section class="details-section">
+    <div class="container">
+        <h1 id="pet-list-heading">Pets in this shelter:</h1>
+        <div class="row">
+            {% for pet in pets %}
+            <div class="col-md-12">
+                <div class="pet-card">
+                    <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
+                        <h3>{{ pet.name }}</h3>
+                        <p>{{ pet.species }} - {{ pet.age }}</p>
+                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<h2>Shelter Detail</h2>
+{% if user.is_authenticated %}
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Address:</strong> {{ user.street_address }}, {{ user.city }}, {{ user.country }}</p>
+<p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+<p><strong>Website:</strong> {{ profile.website }}</p>
+<p><strong>Description:</strong> {{ profile.description }}</p>
+{% else %}
+<p>Login to see information about this shelter
+</p>
+<a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
 
-    {% endblock %}
+{% endif %}
 
-</body>
 
-</html>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .pet-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 60px;
+        margin-top: 50px;
+    }
+
+    .pet-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+</style>
+
+{% endblock %}
