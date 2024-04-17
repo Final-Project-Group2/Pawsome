@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet List</title>
 
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
@@ -53,11 +52,9 @@
             <div class="row">
                 {% for pet in pets %}
                 <div class="col-lg-4 col-md-6"> 
-                <div class="col-lg-4 col-md-6"> 
                     <div class="pet-card">
                         <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}"> 
                             <h3>{{ pet.name }}</h3> 
-                            <p> {{ pet.age }}</p>
                             <p> {{ pet.age }}</p>
                             <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
                         </a>
@@ -76,7 +73,6 @@
         background-color: #f8f9fa;
         font-family: Arial, sans-serif;
             }
-            }
     .container {
         margin-top: 50px;
         text-align: center;
@@ -91,8 +87,6 @@
         
     }
     .pet-image {
-        width: 200px;
-        height: 200px;
         width: 200px;
         height: 200px;
         border-radius: 10px;
