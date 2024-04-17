@@ -4,7 +4,7 @@
 
 <section class="details-section">
     <h1>My profile</h1>
-    
+
     <div class="profile-image">
         {% if profile.image %}
         <img src="{{ profile.image.url }}" alt="Profile Image" class="img-fluid smaller-profile-image"
@@ -22,5 +22,6 @@
         <p><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
         <p><strong>Address:</strong> {{ profile.street_address }}, {{ profile.city }}, {{ profile.country }}</p>
     </div>
+    <a href="{% url 'user_managment_app:edit_customuser_profile' %}">Edit profile</a>
 </section>
 {% endblock %}

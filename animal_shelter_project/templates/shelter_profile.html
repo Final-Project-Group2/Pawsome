@@ -23,6 +23,7 @@
                 <p><strong>Website:</strong> {{ profile.website }}</p>
                 <p><strong>Description:</strong> {{ profile.description }}</p>
             </div>
+            <a href="{% url 'user_managment_app:edit_shelter_profile' %}">Edit profile</a>
         </div>
         <div class="col-md-6">
             <div class="text-right">

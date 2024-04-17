@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from django.views.generic import FormView, CreateView, TemplateView
+from django.views.generic import FormView, CreateView, TemplateView, UpdateView
 from django.urls import reverse_lazy
 from rest_framework import generics
 from .models import Pet, Application
@@ -107,3 +107,11 @@ class AdoptionCreateView(CreateView):
 
 class AdoptionSuccessView(TemplateView):
     template_name = 'adoption_success.html'
+
+class PetUpdateView(UpdateView):
+    model = Pet
+    template_name = 'edit_pet_profile.html'
+    fields = ['name', 'species', 'breeds', 'age', 'gender', 'size', 'weight', 'photos', 'description']
+
+    def get_success_url(self):
+        return reverse_lazy('animal_shelter_app:pet_detail', kwargs={'pk': self.object.pk})

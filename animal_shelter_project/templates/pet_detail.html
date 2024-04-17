@@ -30,15 +30,18 @@
             <h2>Shelter: {{ shelter_name }}</h2>
 
             {% if user.is_authenticated %}
-            {% if user.username == shelter_name %}
-
-            <a href='' class="btn btn-primary">Edit Pet Profile</a>
+            {% if user.is_shelter %}
+            {% if pet.shelter_id == user.shelter.id %}
+            <a href="{% url 'animal_shelter_app:edit_pet_profile' pet.id %}" class="btn btn-primary">Edit Pet
+                Profile</a>
             {% else %}
             <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
             {% endif %}
+            {% endif %}
             {% else %}
-            <h2><strong>Login to Adopt {{ pet.name }}</strong>
+            <h2><strong>Log In or Sign Uo to Adopt {{ pet.name }}</strong>
                 <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'user_managment_app:signup' %}" class="btn btn-primary">Sign Up</a>
             </h2>
             {% endif %}
         </div>
