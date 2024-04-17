@@ -27,7 +27,7 @@
             <h2>Weight: {{ pet.weight }}</h2>
             <h2>Description: {{ pet.description }}</h2>
             <h2>Status: {{ pet.status }}</h2>
-            <h2>Shelter: {{ shelter_name }}</h2>
+            <h2>Shelter: {{ pet.shelter.shelter_name }}</h2>
 
             {% if user.is_authenticated %}
             {% if user.username == shelter_name %}
@@ -36,8 +36,8 @@
             {% else %}
             <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
             {% endif %}
-            {% else %}
-            <h2><strong>Login to Adopt {{ pet.name }}</strong>
+            {% if not user.is_authenticated %}
+            <h2><strong>Log In or Sign Uo to Adopt {{ pet.name }}</strong>
                 <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
             </h2>
             {% endif %}
