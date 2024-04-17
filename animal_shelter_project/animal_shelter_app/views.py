@@ -8,21 +8,54 @@ from .forms import AddPetForm , ApplicationForm
 from urllib.parse import urlparse
 from user_managment_app.models import Shelter
 from django.contrib.auth.mixins import LoginRequiredMixin
+from filters.forms import PetFilterForm
+from rest_framework.response import Response
 
-class PetListCreatView(generics.ListCreateAPIView):
+
+class PetListCreatView(generics.ListCreateAPIView):  # added by mohsen
     queryset = Pet.objects.all()
     serializer_class = PetSerializer
     
     def get_queryset(self):
         queryset = super().get_queryset()
-        species = self.request.query_params.get('species', None)
+        species = self.request.query_params.get('species')
         if species:
             queryset = queryset.filter(species=species)
         return queryset
     
-    def get(self, request, *args, **kwargs): # added by mohsen
-        pets= self.get_queryset()
-        return render(request, 'pet_list.html', {'pets': pets})
+    def get(self, request, *args, **kwargs):
+        pets = self.get_queryset()
+        form = PetFilterForm(request.GET)
+
+        if form.is_valid():
+            species = form.cleaned_data.get('species')
+            gender = form.cleaned_data.get('gender')
+            size = form.cleaned_data.get('size')
+
+            if species:
+                pets = pets.filter(species=species)
+            if gender:
+                pets = pets.filter(gender=gender)
+            if size:
+                pets = pets.filter(size=size)
+        
+        return render(request, 'pet_list.html', {'pets': pets, 'form': form})
+    
+    
+# class PetListCreatView(generics.ListCreateAPIView):
+#     queryset = Pet.objects.all()
+#     serializer_class = PetSerializer
+    
+#     def get_queryset(self):
+#         queryset = super().get_queryset()
+#         species = self.request.query_params.get('species', None)
+#         if species:
+#             queryset = queryset.filter(species=species)
+#         return queryset
+    
+#     def get(self, request, *args, **kwargs): # added by mohsen
+#         pets= self.get_queryset()
+#         return render(request, 'pet_list.html', {'pets': pets})
 
 
 class PetDetailView(generics.RetrieveUpdateDestroyAPIView):
