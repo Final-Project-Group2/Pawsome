@@ -37,6 +37,7 @@
             <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
             {% endif %}
             {% endif %}
+            {% endif %}
             {% if not user.is_authenticated %}
             <h2><strong>Log In or Sign Uo to Adopt {{ pet.name }}</strong>
                 <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
