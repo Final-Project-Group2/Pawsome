@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block styles %}
+  <style>
+    /* Your custom CSS styles here */
+    .details-section {
+      margin-top: 50px;
+    }
+    /* Additional styles as needed */
+  </style>
+{% endblock %}
+
+{% block content %}
+<section class="details-section">
+    <h1>Edit Profile</h1>
+    <form action="" method="post" class="needs-validation" style="width: 35%; margin-left: 20%;" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" class="btn btn-primary" value="Save">
+        <a href="{% url 'password_change' %}" class="btn btn-secondary">Change Password</a>
+    </form>
+</section>
+{% endblock content %}
+
+{% block scripts %}
+  <script>
+    // Your JavaScript code here if needed
+    // Example: form validation
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var form = document.querySelector('.needs-validation');
+        form.addEventListener('submit', function(event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      }, false);
+    })();
+  </script>
+{% endblock %}

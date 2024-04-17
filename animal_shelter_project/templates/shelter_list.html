@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="shelter-list-section">
+    <h1>Shelters List</h1>
+    <div class="row">
+        {% for shelter in shelters %}
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
+                        {% if shelter.user.image %}
+                            <img class="card-img-top" src="{{ shelter.user.image.url }}" alt="{{ shelter.user.username }}'s Image">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'images/default_profile_image.jpg' %}" alt="Default Image">
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title">{{ shelter.shelter_name }}</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .shelter-list-section {
+        margin: 50px auto;
+        width: 80%;
+    }
+    .shelter-list-section h1 {
+        margin-bottom: 60px;
+    }
+    .card {
+        border: none;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .card-img-top {
+        height: 300px; /* adjust as needed */
+        object-fit: cover;
+    }
+
+    
+</style>
+
+
+{% endblock %}
+

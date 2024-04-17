@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<head>
+    <title>Home page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+
+
+{% block content %}
+<div class="container">
+    
+    <div id="home-section">
+        <h1>Welcome to Pawsome</h1>
+    </div>
+
+    
+    <div class="row">
+        
+        <section class="about">
+            <h2>About Us</h2>
+            <p class = "right-side">Welcome to Pawsome, where we're dedicated to finding loving homes for every furry friend in need.
+            At Pawsome, we believe that every animal deserves a second chance at happiness.
+            Founded with a passion for animal welfare, Pawsome strives to make a difference in the lives of homeless pets.
+            Learn more about our journey and commitment to animal rescue and adoption here at Pawsome.</p>
+            <img src="{% static 'img/black-dog.png' %}" alt="blabk dog" class="dog">
+        </section>
+
+        <section class="mission">
+            <h2>Our Mission</h2>
+            <p class="left-side"> Our mission at Pawsome is simple: to match deserving animals with loving families and create lifelong bonds.
+            We are committed to promoting responsible pet ownership, spaying/neutering, and ending animal homelessness.
+            At Pawsome, we work tirelessly to provide shelter, care, and compassion to animals in need, ensuring they find their forever homes.
+            Join us in our mission to make the world a better place, one adoption at a time.</p>
+            <img src="{% static 'img/cat-homepage.png' %}" alt="a cat image" class="cat" >
+        </section>
+
+        <section class="about">
+            <h2>How to adopt</h2>
+            <p class = "right-side">To embark on the heartwarming journey of adopting a pet, the first step is to register yourself on our site.
+            Once registered, you'll have the joyous task of choosing the perfect companion from our array of lovable pets.
+            After selecting your future furry friend, simply fill out our adoption form with your details and preferences.
+            Rest assured, upon submission, our dedicated team will promptly review your application and get in touch with you soon.
+            We're excited to guide you through this process and help you find your ideal pet match. Start your adoption journey with us today!</p>
+            <img src="{% static 'img/rabbit.jpg' %}" alt="rabbit" class="rabbit">
+        </section>
+
+            
+        
+    </div>
+
+    <div class="home_page">
+        <div class="col-md-6 order-md-2">
+        </div>
+    </div>
+</div>
+
+   <style>
+        .home_context {
+            display: grid;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .left-side {
+            margin-right:400px;
+            text-align: justify;
+
+        }
+
+        .right-side {
+            margin-left: 400px;
+            background-color: #f0f0f0;
+            text-align: justify;
+        }
+
+        .about h2 {
+            margin-top:100px;
+            margin-bottom:20px;
+            margin-left:500px;
+        }
+
+        .dog{
+            width:250px;
+            height:auto;
+            margin-right:400px;
+            margin-top:-250px;
+
+        }
+
+        .mission h2{
+            margin-top:100px;
+            margin-bottom:20px;
+            margin-left:80px;
+        }
+
+        .cat{
+            width:250px;
+            margin-left:500px;
+            margin-top:-260px;
+            margin-bottom:50px;
+        }
+
+        .rabbit{
+            width:250px;
+            height:auto;
+            margin-right:400px;
+            margin-top:-300px;
+            margin-bottom:50px;
+        }
+    </style>
+
+    
+
+{% endblock %}

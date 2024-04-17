@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Detail</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+
+
+<div class="container pet-detail">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture">
+
+        </div>
+        <div class="col-md-6">
+            <h1>Pet Detail</h1>
+            <h2>Name: {{ pet.name }}</h2>
+            <h2>Species: {{ pet.species }}</h2>
+            <h2>Breeds: {{ pet.breeds }}</h2>
+            <h2>Age: {{ pet.age }}</h2>
+            <h2>Gender: {{ pet.gender }}</h2>
+            <h2>Size: {{ pet.size }}</h2>
+            <h2>Weight: {{ pet.weight }}</h2>
+            <h2>Description: {{ pet.description }}</h2>
+            <h2>Status: {{ pet.status }}</h2>
+            <h2>Shelter: {{ pet.shelter.shelter_name }}</h2>
+
+            {% if user.is_authenticated and user.is_shelter %}
+            {% if pet.shelter_id == shelter.id %}
+            <a href="{% url 'animal_shelter_app:edit_pet_profile' pet.id %}" class="btn btn-primary">Edit Pet
+                Profile</a>
+            {% else %}
+            <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
+            {% endif %}
+            {% endif %}
+            {% if not user.is_authenticated %}
+            <h2><strong>Log In or Sign Uo to Adopt {{ pet.name }}</strong>
+                <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'user_managment_app:signup' %}" class="btn btn-primary">Sign Up</a>
+            </h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

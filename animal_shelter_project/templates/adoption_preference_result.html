@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Adoption Preference Results</h1>
+<div>
+    <p>{{ openai_response }}</p>
+
+    <h2>Matching Pets:</h2>
+    {% if matching_pets %}
+    <ul>
+        {% for pet in matching_pets %}
+        <div class="col-md-12">
+            <div class="pet-card">
+                <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
+                    <h3>{{ pet.name }}</h3>
+                    <p>{{ pet.species }} - {{ pet.age }}</p>
+                    <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No matching pets found in our shelter.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}
