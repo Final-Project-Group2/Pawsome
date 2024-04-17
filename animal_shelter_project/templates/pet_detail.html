@@ -12,7 +12,7 @@
 
 <div class="container pet-detail">
     <div class="row">
-        <div class="col-md-6">
+        <div class="pet-photo">
             <img src="{{ pet_photo_path }}" alt="{{ pet.name }} picture">
 
         </div>
@@ -44,4 +44,11 @@
         </div>
     </div>
 </div>
+
+<style>
+    .pet-photo {
+        width: 400px;  
+        height: 400px;
+    }
+</style>
 {% endblock %}
