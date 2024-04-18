@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView
-=======
-from django.shortcuts import render,get_object_or_404
-from django.views.generic import FormView, CreateView, TemplateView, UpdateView, DetailView
->>>>>>> 758b441 (Updating pet details)
 from django.urls import reverse_lazy
 from .models import Pet, Application
 from .forms import AddPetForm , ApplicationForm
