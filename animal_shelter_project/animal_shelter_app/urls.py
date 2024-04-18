@@ -7,8 +7,9 @@ from django.conf import settings
 app_name = 'animal_shelter_app'
 
 urlpatterns =[
-    path('pets/', PetListCreatView.as_view(), name='pet_list'),
+    path('pets/', PetListView.as_view(), name='pet_list'),
     path('pet/<int:pk>/', PetDetailView.as_view(), name='pet_detail'),
+    path('pets/<int:pk>/', PetListView.as_view(), name='pet_list_shelter'),
     path('add_pet/', AddPetView.as_view(), name='add_pet'), # added by mohsen
     path('adoption-form/<int:pet_id>/', AdoptionCreateView.as_view(), name='adoption_form'), # added by mohsen
     path('adoption-success/', AdoptionSuccessView.as_view(), name='adoption_success'),
