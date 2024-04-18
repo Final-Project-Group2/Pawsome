@@ -89,6 +89,15 @@ class AdoptionCreateView(CreateView):
     template_name = 'adoption_form.html'
     form_class = ApplicationForm
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get the pet object based on the pet_id from URL kwargs
+        pet_id = self.kwargs['pet_id']
+        pet = Pet.objects.get(id=pet_id)
+        # Pass the pet object to the template context
+        context['pet'] = pet
+        return context
+
     def form_valid(self, form):
         pet_id = self.kwargs['pet_id']
         pet = Pet.objects.get(id=pet_id)

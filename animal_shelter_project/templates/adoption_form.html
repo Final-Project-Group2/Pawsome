@@ -14,13 +14,41 @@
 <body>
     {% block content %}
     <h1>Adoption Application Form</h1>
-    {{ pet.name }}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="welcome-message text-center">
+                    <h3>{{ pet.name }} will have a family soon!</h3>
+                </div>
+                <div class="text-center">
+                    <div class="pet-photo mt-3">
+                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture"
+                            class="img-fluid smaller-profile-image" style="width: 200px; height: 200px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit">Submit</button>
     </form>
-
+    <style>
+        .welcome-message {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
     {% endblock %}
 
 </body>
