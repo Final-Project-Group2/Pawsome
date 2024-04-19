@@ -1,44 +1,16 @@
-from rest_framework import generics,status
+from rest_framework import generics
 from rest_framework.response import Response
 from .models import CustomUser, Shelter
-from .serializers import CustomUserSerializer, ShelterSerializer
-import django_filters
-import django_filters.rest_framework as filters
+from .serializers import CustomUserSerializer
 from django.shortcuts import render,redirect
-from django.shortcuts import get_object_or_404
-from django.conf import settings
 from animal_shelter_app.models import Pet
-from animal_shelter_app.serializers import PetSerializer
 from django.views.generic import CreateView, View, ListView, TemplateView, DetailView
 from .forms import CustomUserForm, ShelterSignUpForm, CustomUserChangeForm, ShelterChangeForm 
-from django.urls import reverse_lazy, reverse
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.hashers import check_password, make_password, get_hasher
-from django.contrib.auth import authenticate, login
+from django.urls import reverse_lazy
 from .forms import ShelterSignUpForm
 from django.db import IntegrityError
 from animal_shelter_app.models import Application
 
-class UserFilter(django_filters.FilterSet):
-    username = filters.CharFilter(field_name='username')
-    first_name = filters.CharFilter(field_name='first_name')
-    last_name = filters.CharFilter(field_name='last_name')
-    username_sw= filters.CharFilter(field_name='username',lookup_expr='strartswith')
-    class Meta:
-        model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'username_sw']
-
-class CustomUserListCreatView(generics.ListCreateAPIView):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
-    filters_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_class = UserFilter
-
-    # def get(self, request, *args, **kwargs):
-    #     queryset = self.get_queryset()
-    #     users = self.serializer_class(queryset, many=True)
-    #     return render(request, 'shelter_list.html', {'users': users.data})
-    
     
 class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CustomUser.objects.all()
@@ -81,7 +53,7 @@ class ShelterDetailView(DetailView):
         shelter = self.get_object()
         
         # Get all pets related to the shelter
-        pets = Pet.objects.filter(shelter=shelter) 
+        pets = Pet.objects.filter(shelter=shelter, status__in=['adoptable', 'pending_adoption']) 
 
         context['pets'] = pets
         context['user'] = self.request.user
@@ -109,7 +81,7 @@ class SignUpShelterView(CreateView):
           
 class EditCustomUserProfileView(View):
     template_name = 'edit_customuser_profile.html'
-    success_url = reverse_lazy("user_profile")
+
     def get(self, request):
         user = request.user
         form = CustomUserChangeForm(instance=user)
@@ -121,14 +93,13 @@ class EditCustomUserProfileView(View):
         form = CustomUserChangeForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('home')  
+            return redirect('user_managment_app:customuser_profile')  
         else:
             context = {'form': form}
             return render(request, self.template_name, context)
 
 class EditShelterProfileView(View):
     template_name = 'edit_shelter_profile.html'
-    success_url = reverse_lazy("shelter_profile")
     
     def get(self, request):
         user = request.user
@@ -141,7 +112,7 @@ class EditShelterProfileView(View):
         form = ShelterChangeForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('home')  
+            return redirect ('user_managment_app:shelter_profile')  
         else:
             context = {'form': form}
             return render(request, self.template_name, context)

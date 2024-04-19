@@ -28,7 +28,8 @@
 
     <h1>My adoption applications:</h1>
     {% for application in applications %}
-    <li><strong>Pet:</strong>{{ application.pet }} - <strong>Created at:</strong> {{ application.created_at }}</li>
+    <li><strong>Pet:</strong>{{ application.pet }} - <strong>Created at:</strong> {{ application.created_at }} -
+        <strong>Status:</strong> {{ application.status }}</li>
     {% endfor %}
 
 </section>

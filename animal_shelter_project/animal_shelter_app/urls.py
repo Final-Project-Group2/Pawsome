@@ -14,6 +14,7 @@ urlpatterns =[
     path('adoption-form/<int:pet_id>/', AdoptionCreateView.as_view(), name='adoption_form'), # added by mohsen
     path('adoption-success/', AdoptionSuccessView.as_view(), name='adoption_success'),
     path('pet/<int:pk>/update/', PetUpdateView.as_view(), name='edit_pet_profile'),
+    path('manager_adoption/', AdoptionListView.as_view(), name='manager_adopt_applications'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # added by mohsen
