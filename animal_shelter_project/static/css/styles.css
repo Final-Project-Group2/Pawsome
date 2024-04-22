@@ -1,7 +1,14 @@
 /* styles.css */
 
 
-html, body, header, nav, ul, li, main, footer {
+html,
+body,
+header,
+nav,
+ul,
+li,
+main,
+footer {
     padding: 10px;
 }
 
@@ -10,8 +17,8 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     color: #333;
-    
-    
+
+
 }
 
 header div {
@@ -49,7 +56,7 @@ nav ul {
     padding-bottom: 60px;
     font-size: x-large;
     transition: color 0.9s ease;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 nav ul li {
@@ -71,7 +78,7 @@ nav ul li a:hover {
 
 main {
     padding-bottom: 20px;
-    margin-top:50px;
+    margin-top: 50px;
 }
 
 h1 {
@@ -81,11 +88,11 @@ h1 {
 
 /* Shelter list styles */
 
-.shelter-list ul a{
+.shelter-list ul a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 .shelter-item {
@@ -308,8 +315,10 @@ button[type="submit"]:hover {
 
 /* Style the paragraph */
 .col-md-4 p {
-    margin: 0; /* Remove default margin */
-    padding: 20px; /* Add some padding */
+    margin: 0;
+    /* Remove default margin */
+    padding: 20px;
+    /* Add some padding */
 }
 
 /* Optionally, add some spacing between the elements */
@@ -319,22 +328,24 @@ button[type="submit"]:hover {
 
 
 .img-fluid {
-    border: 2px solid #ddd; 
+    border: 2px solid #ddd;
     border-radius: 8px;
     width: 100px;
-    height: 100px; 
+    height: 100px;
 }
 
-.home_page img{
+.home_page img {
     width: 500px;
-     
+
 }
 
 
 /* Style the paragraph */
 .col-md-4 p {
-    margin: 0; /* Remove default margin */
-    padding: 20px; /* Add some padding */
+    margin: 0;
+    /* Remove default margin */
+    padding: 20px;
+    /* Add some padding */
 }
 
 /* Optionally, add some spacing between the elements */
@@ -344,15 +355,19 @@ button[type="submit"]:hover {
 
 /* Optionally, add border to the images */
 .img-fluid {
-    border: 2px solid #ddd; /* Example border */
-    border-radius: 8px; /* Optional: add border radius */
-    max-width: 100%; /* Ensure images don't overflow */
-    height: auto; /* Maintain aspect ratio */
+    border: 2px solid #ddd;
+    /* Example border */
+    border-radius: 8px;
+    /* Optional: add border radius */
+    max-width: 100%;
+    /* Ensure images don't overflow */
+    height: auto;
+    /* Maintain aspect ratio */
 }
 
-.home_page img{
+.home_page img {
     width: 500px;
-     
+
 }
 
 

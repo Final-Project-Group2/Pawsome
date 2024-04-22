@@ -10,9 +10,26 @@
 
 <body>
     <h1>Adoption Dashboard</h1>
-    <img src="{% static 'adoption_chart.png' %}" alt="Adoption Chart">
+    <div class="charts">
+        <img src="{% static 'dashboard/adoption_chart.png' %}" alt="adoption chart" class="chart right-chart">
+        <img src="{% static 'dashboard/species_chart.png' %}" alt="species chart" class="chart left-chart">
+    </div>
 </body>
+<style>
+    .charts {
 
-</html>
+        top: 0;
+        right: 0;
+        display: flex;
+        /* Display the charts in a horizontal line */
+    }
 
+    .chart {
+        width: auto;
+        /* Adjust the width as needed */
+        height: auto;
+        /* Adjust the height as needed */
+        margin-left: 10px;
+    }
+</style>
 {% endblock %}
