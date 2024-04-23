@@ -397,6 +397,7 @@
     },
     {
         "model": "sessions.session",
+<<<<<<< HEAD
         "pk": "at0s9f9qgngijd18xiidmd5622vd3odr",
         "fields": {
             "session_data": ".eJxVjDsOwjAQBe_iGln2xl9K-pzB2vUHB5AjxUmFuDuylALaNzPvzQIeew1Hz1tYErsyzS6_G2F85jZAemC7rzyubd8W4kPhJ-18XlN-3U7376Bir6PWkEEUaUkZKXQqlLWeisx-cslbKA4igTWkyRolPDqFzkiL4KMVvrDPF9inN1c:1rwnin:RxqBf0GsvK8SZjFdArJOXSlg8EJHoYhVxYE2ZohAuxg",
@@ -421,6 +422,8 @@
     },
     {
         "model": "sessions.session",
+=======
+>>>>>>> 5f04e4b (updated json file)
         "pk": "z72lskl9yq4o8xo5eeisekgr64hfhgp4",
         "fields": {
             "session_data": ".eJxVjEEOwiAQRe_C2hBkCgWX7nsGMgODVA0kpV0Z765NutDtf-_9lwi4rSVsnZcwJ3ERWpx-N8L44LqDdMd6azK2ui4zyV2RB-1yaomf18P9OyjYy7dWZrTnCDTEzBSzU8mwNdo5VpgyD9EAeCQPpJRBSOAGp9mO1jvvLYJ4fwDwyje1:1ru7Fw:u1BYQ0d5d8fLaegKx5QNz-Km_XcS2EG2OfUcJoJ06zo",
@@ -438,11 +441,19 @@
             "gender": "male",
             "size": "small",
             "weight": "8 lbs",
+<<<<<<< HEAD
             "photos": "pets_images/oliver-cat-1.jpg",
             "description": "Whiskers is a playful and affectionate Siamese cat who loves chasing toy mice and curling up on your lap.",
             "status": "pending_adoption",
             "published_at": "2024-04-09T08:43:38.057Z",
             "updated_at": "2024-04-16T18:40:29.416Z",
+=======
+            "photos": "cats/whiskers.jpeg",
+            "description": "Whiskers is a playful and affectionate Siamese cat who loves chasing toy mice and curling up on your lap.",
+            "status": "adoptable",
+            "published_at": "2024-04-09T08:43:38.057Z",
+            "updated_at": "2024-04-09T08:43:38.058Z",
+>>>>>>> 5f04e4b (updated json file)
             "shelter": 1
         }
     },
@@ -457,7 +468,11 @@
             "gender": "female",
             "size": "small",
             "weight": "8 lbs",
+<<<<<<< HEAD
             "photos": "pets_images/simba-cat-1.jpg",
+=======
+            "photos": "cats/mittens.jpg",
+>>>>>>> 5f04e4b (updated json file)
             "description": "Mittens is a playful and affectionate Domestic Shorthair cat who loves chasing toys and lounging in sunny spots.",
             "status": "adoptable",
             "published_at": "2024-04-09T08:43:38.061Z",
@@ -476,7 +491,11 @@
             "gender": "female",
             "size": "large",
             "weight": "12 lbs",
+<<<<<<< HEAD
             "photos": "pets_images/sophie-cat-1.jpg",
+=======
+            "photos": "cats/luna.jpg",
+>>>>>>> 5f04e4b (updated json file)
             "description": "Luna is a majestic Maine Coon cat with a gentle temperament and luxurious fur. She enjoys lounging in sunny spots and being brushed.",
             "status": "pending_adoption",
             "published_at": "2024-04-09T08:43:38.064Z",
@@ -495,7 +514,11 @@
             "gender": "male",
             "size": "large",
             "weight": "70 lbs",
+<<<<<<< HEAD
             "photos": "pets_images/buddy-dog-1.jpg",
+=======
+            "photos": "dogs/max.jpg",
+>>>>>>> 5f04e4b (updated json file)
             "description": "Max is a friendly and loyal Golden Retriever who enjoys playing fetch, going for walks, and cuddling on the couch.",
             "status": "adopted",
             "published_at": "2024-04-09T08:43:38.068Z",
@@ -514,7 +537,11 @@
             "gender": "male",
             "size": "large",
             "weight": "50 lbs",
+<<<<<<< HEAD
             "photos": "pets_images/Buddy.jpg",
+=======
+            "photos": "dogs/pit.png",
+>>>>>>> 5f04e4b (updated json file)
             "description": "Pit is a friendly and loyal Golden Retriever who enjoys playing fetch, going for walks, and cuddling on the couch.",
             "status": "adoptable",
             "published_at": "2024-04-09T08:43:38.071Z",
@@ -523,6 +550,7 @@
         }
     },
     {
+<<<<<<< HEAD
         "model": "animal_shelter_app.pet",
         "pk": 6,
         "fields": {
@@ -1692,6 +1720,8 @@
         }
     },
     {
+=======
+>>>>>>> 5f04e4b (updated json file)
         "model": "user_managment_app.customuser",
         "pk": 1,
         "fields": {
@@ -1757,7 +1787,11 @@
             "city": "Puppyville",
             "country": "Animalia",
             "phone_number": "555-987-6543",
+<<<<<<< HEAD
             "image": "shelters_images/pawsome-shelter.jpg",
+=======
+            "image": "",
+>>>>>>> 5f04e4b (updated json file)
             "is_shelter": true,
             "groups": [],
             "user_permissions": []
@@ -1781,6 +1815,7 @@
             "city": "Catsville",
             "country": "Animalia",
             "phone_number": "777-989-6243",
+<<<<<<< HEAD
             "image": "shelters_images/happy cat.jpg",
             "is_shelter": true,
             "groups": [],
@@ -1855,6 +1890,10 @@
             "phone_number": "212129",
             "image": "",
             "is_shelter": false,
+=======
+            "image": "",
+            "is_shelter": true,
+>>>>>>> 5f04e4b (updated json file)
             "groups": [],
             "user_permissions": []
         }
@@ -1888,6 +1927,7 @@
             "website": "https://www.happy_cat.org",
             "description": "Happy Cat is committed to rescuing and caring for animals of all kinds, providing them with love, shelter, and medical attention until they find their forever homes."
         }
+<<<<<<< HEAD
     },
     {
         "model": "user_managment_app.shelter",
@@ -1902,5 +1942,11 @@
 <<<<<<< HEAD
 ]
 =======
+<<<<<<< HEAD
 ]
 >>>>>>> 768cc4d (new json file)
+=======
+    }
+]
+>>>>>>> 5f04e4b (updated json file)
+>>>>>>> 572a9eb (json file)
