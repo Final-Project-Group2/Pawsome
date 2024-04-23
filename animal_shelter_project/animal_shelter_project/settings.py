@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'animal_shelter_app.apps.AnimalShelterAppConfig',
     'user_managment_app.apps.UserManagmentAppConfig',
     'openai_app.apps.OpenaiAppConfig',
+    'dashboard.apps.DashboardConfig',
     'filters',
 ]
 

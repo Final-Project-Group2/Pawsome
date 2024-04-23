@@ -43,18 +43,36 @@ class Pet(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.species})"
+    
 
+    
 class Application(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('Under_review', 'Under review'),
+        ('adopted', 'Adopted'),
+        ('cancelled', 'Cancelled')
+    ]
+        
     created_at = models.DateTimeField(auto_now_add=True)
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     message = models.TextField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
         return f"{self.user} ({self.pet})"
-    
-    def save(self, *args, **kwargs):
-        self.pet.status = 'pending_adoption'
+
+    def approve(self):
+        self.status = 'adopted'
+        self.pet.status = 'adopted'
+        self.save()
         self.pet.save()
-        super().save(*args, **kwargs)
+
+    def cancel(self):
+        self.status = 'cancelled'
+        self.save()
+
+
+
 

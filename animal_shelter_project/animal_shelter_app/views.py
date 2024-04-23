@@ -1,12 +1,13 @@
-from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView, View
 from django.urls import reverse_lazy
 from .models import Pet, Application
+from user_managment_app.models import CustomUser
 from .forms import AddPetForm , ApplicationForm
 from urllib.parse import urlparse
 from user_managment_app.models import Shelter
 from django.contrib.auth.mixins import LoginRequiredMixin
-from rest_framework.response import Response
 from filters.forms import PetFilterForm
+from django.shortcuts import redirect, render
 
 
 class PetListView(ListView):
@@ -18,11 +19,12 @@ class PetListView(ListView):
         shelter_pk = self.kwargs.get('pk')
 
         if shelter_pk:
-            queryset = Pet.objects.filter(shelter_id=shelter_pk)
+            queryset = Pet.objects.filter(shelter_id=shelter_pk, status__in=['adoptable', 'pending_adoption'])
         else:
-            queryset = Pet.objects.all()
+            queryset = Pet.objects.filter(status__in=['adoptable', 'pending_adoption'])
             
         form = PetFilterForm(self.request.GET)
+
         if form.is_valid():
             species = form.cleaned_data.get('species')
             gender = form.cleaned_data.get('gender')
@@ -118,3 +120,30 @@ class PetUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('animal_shelter_app:pet_detail', kwargs={'pk': self.object.pk})
+    
+class AdoptionListView(LoginRequiredMixin, ListView):
+    model = Application
+    template_name = 'manager_adopt_applications.html'
+    context_object_name = 'applications'
+
+    def get_queryset(self):
+        user = self.request.user
+        return super().get_queryset().filter(pet__shelter__user__username=user.username)
+    
+        
+class ApproveAdoptionView(View):
+    def post(self, request, application_id):
+        application = Application.objects.get(id=application_id)
+        application.pet.status = 'adopted'
+        application.pet.save()
+
+        return redirect('animal_shelter_app:manager_adopt_applications')
+    
+class CancelAdoptionView(View):
+    def post(self, request, application_id):
+        application = Application.objects.get(id=application_id)
+        application.pet.status = 'adoptable'
+        application.pet.save()
+
+        return redirect('animal_shelter_app:manager_adopt_applications')
+
