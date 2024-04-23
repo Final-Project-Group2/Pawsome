@@ -12,7 +12,11 @@
 
 <div class="container pet-detail">
     <div class="row">
+<<<<<<< HEAD
         <div class="pet-photo">
+=======
+        <div class="col-md-6">
+>>>>>>> 758b441 (Updating pet details)
             <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture">
 
         </div>
@@ -29,15 +33,23 @@
             <h2>Status: {{ pet.status }}</h2>
             <h2>Shelter: {{ pet.shelter.shelter_name }}</h2>
 
+<<<<<<< HEAD
             {% if user.is_authenticated %}
             {% if user.is_shelter and pet.shelter_id == shelter.id %}
+=======
+            {% if user.is_authenticated and user.is_shelter %}
+            {% if pet.shelter_id == shelter.id %}
+>>>>>>> 758b441 (Updating pet details)
             <a href="{% url 'animal_shelter_app:edit_pet_profile' pet.id %}" class="btn btn-primary">Edit Pet
                 Profile</a>
             {% else %}
             <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
             {% endif %}
             {% endif %}
+<<<<<<< HEAD
             {% endif %}
+=======
+>>>>>>> 758b441 (Updating pet details)
             {% if not user.is_authenticated %}
             <h2><strong>Log In or Sign Uo to Adopt {{ pet.name }}</strong>
                 <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
