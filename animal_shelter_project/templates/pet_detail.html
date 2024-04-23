@@ -12,7 +12,7 @@
 
 <div class="container pet-detail">
     <div class="row">
-        <div class="col-md-6">
+        <div class="pet-photo">
             <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture">
 
         </div>
@@ -29,8 +29,8 @@
             <h2>Status: {{ pet.status }}</h2>
             <h2>Shelter: {{ pet.shelter.shelter_name }}</h2>
 
-            {% if user.is_authenticated and user.is_shelter %}
-            {% if pet.shelter_id == shelter.id %}
+            {% if user.is_authenticated %}
+            {% if user.is_shelter and pet.shelter_id == shelter.id %}
             <a href="{% url 'animal_shelter_app:edit_pet_profile' pet.id %}" class="btn btn-primary">Edit Pet
                 Profile</a>
             {% else %}
@@ -46,4 +46,11 @@
         </div>
     </div>
 </div>
+
+<style>
+    .pet-photo {
+        width: 400px;
+        height: 400px;
+    }
+</style>
 {% endblock %}

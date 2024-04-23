@@ -53,12 +53,15 @@
         <div class="welcome-message text-center">
             {% if user.is_authenticated %}
             <h2> Welcome, {{ user.username }}! </h2>
-            <ul>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">Log Out</button>
-                </form>
-            </ul>
+
+            {% if user.is_shelter %}
+            <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn btn-primary">+ Add Pet</a>
+            {% endif %}
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Log Out</button>
+            </form>
+
             {% endif %}
         </div>
     </header>
@@ -97,6 +100,11 @@
             margin-top: 20px;
             text-align: center;
             color: #333;
+        }
+
+        .welcome-message form {
+            padding: 10px;
+
         }
     </style>
 

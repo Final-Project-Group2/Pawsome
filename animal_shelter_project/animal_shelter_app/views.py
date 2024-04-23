@@ -1,61 +1,49 @@
-from django.shortcuts import render,get_object_or_404
-from django.views.generic import FormView, CreateView, TemplateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DetailView
 from django.urls import reverse_lazy
-from rest_framework import generics
 from .models import Pet, Application
-from .serializers import PetSerializer
 from .forms import AddPetForm , ApplicationForm
 from urllib.parse import urlparse
 from user_managment_app.models import Shelter
 from django.contrib.auth.mixins import LoginRequiredMixin
-from filters.forms import PetFilterForm
 from rest_framework.response import Response
+from filters.forms import PetFilterForm
 
 
-class PetListCreatView(generics.ListCreateAPIView):  # added by mohsen
-    queryset = Pet.objects.all()
-    serializer_class = PetSerializer
+class PetListView(ListView):
+    model = Pet
+    template_name = 'pet_list.html'
+    context_object_name = 'pets'
     
     def get_queryset(self):
-        queryset = super().get_queryset()
-        species = self.request.query_params.get('species')
-        if species:
-            queryset = queryset.filter(species=species)
-        return queryset
-    
-    def get(self, request, *args, **kwargs):
-        pets = self.get_queryset()
-        form = PetFilterForm(request.GET)
+        shelter_pk = self.kwargs.get('pk')
 
+        if shelter_pk:
+            queryset = Pet.objects.filter(shelter_id=shelter_pk)
+        else:
+            queryset = Pet.objects.all()
+            
+        form = PetFilterForm(self.request.GET)
         if form.is_valid():
             species = form.cleaned_data.get('species')
             gender = form.cleaned_data.get('gender')
             size = form.cleaned_data.get('size')
 
             if species:
-                pets = pets.filter(species=species)
+                queryset = queryset.filter(species=species)
             if gender:
-                pets = pets.filter(gender=gender)
+                queryset = queryset.filter(gender=gender)
             if size:
-                pets = pets.filter(size=size)
+                queryset = queryset.filter(size=size)
         
-        return render(request, 'pet_list.html', {'pets': pets, 'form': form})
+        return queryset
     
-    
-# class PetListCreatView(generics.ListCreateAPIView):
-#     queryset = Pet.objects.all()
-#     serializer_class = PetSerializer
-    
-#     def get_queryset(self):
-#         queryset = super().get_queryset()
-#         species = self.request.query_params.get('species', None)
-#         if species:
-#             queryset = queryset.filter(species=species)
-#         return queryset
-    
-#     def get(self, request, *args, **kwargs): # added by mohsen
-#         pets= self.get_queryset()
-#         return render(request, 'pet_list.html', {'pets': pets})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        shelter_pk = self.kwargs.get('pk')
+        if shelter_pk:
+            shelter = Shelter.objects.get(pk=shelter_pk)
+            context['shelter'] = shelter
+        return context
 
 
 class PetDetailView(DetailView):
@@ -86,13 +74,10 @@ class AddPetView(LoginRequiredMixin, CreateView):
     model = Pet
 
     def form_valid(self, form):
-        # Retrieve the current user
         user = self.request.user
-        
-        # Retrieve the shelter associated with the user
+
         shelter = user.shelter_set.first()
         
-        # Set the shelter_id on the form instance
         form.instance.shelter_id = shelter.id
         
         return super().form_valid(form)
@@ -103,6 +88,15 @@ class AddPetView(LoginRequiredMixin, CreateView):
 class AdoptionCreateView(CreateView):
     template_name = 'adoption_form.html'
     form_class = ApplicationForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get the pet object based on the pet_id from URL kwargs
+        pet_id = self.kwargs['pet_id']
+        pet = Pet.objects.get(id=pet_id)
+        # Pass the pet object to the template context
+        context['pet'] = pet
+        return context
 
     def form_valid(self, form):
         pet_id = self.kwargs['pet_id']

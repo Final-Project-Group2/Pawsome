@@ -17,6 +17,7 @@ from django.contrib.auth.hashers import check_password, make_password, get_hashe
 from django.contrib.auth import authenticate, login
 from .forms import ShelterSignUpForm
 from django.db import IntegrityError
+from animal_shelter_app.models import Application
 
 class UserFilter(django_filters.FilterSet):
     username = filters.CharFilter(field_name='username')
@@ -155,9 +156,14 @@ class CustomUserProfileView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        applications = Application.objects.filter(user=self.request.user)
         profile = self.get_queryset().first()
         context['profile'] = profile
+        context['applications'] = applications
+        print(applications)
+
         return context
+    
 
 class ShelterProfileView(ListView):
     model = Shelter
