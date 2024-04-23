@@ -1,7 +1,7 @@
 /* styles.css */
 
 
-html, body, header, nav, ul, li, main, footer {
+html,header, nav, ul, li, main, footer {
     padding: 10px;
 }
 
@@ -10,7 +10,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     color: #333;
-    
     
 }
 

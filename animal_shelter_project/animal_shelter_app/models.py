@@ -29,7 +29,7 @@ class Pet(models.Model):
 
     name = models.CharField(max_length=50)
     species = models.CharField(max_length=50, choices=SPECIES_CHOICES)
-    breeds = models.CharField(max_length=50)
+    breeds = models.CharField(max_length=100)
     age = models.CharField(max_length=50)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES)
     size = models.CharField(max_length=50, choices=SIZE_CHOICES)
@@ -43,7 +43,7 @@ class Pet(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.species})"
-    
+
 class Application(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
