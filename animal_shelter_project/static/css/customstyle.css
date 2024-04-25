@@ -46,8 +46,14 @@ body::after {
    position: relative;
    z-index: 1;
    flex-grow: 1;
+   margin-bottom: 150px;
+
 }
 
+a {
+   color: #e3f1d2;
+   text-decoration: underline;
+}
 
 .navbar {
    display: flex;
@@ -191,6 +197,7 @@ body::after {
 
 .shelter-data {
    margin-bottom: 40px;
+   margin-left: 20px;
 }
 
 .pet-section {
@@ -306,4 +313,5 @@ footer {
    color: #fff;
    padding: 20px 0;
    text-align: center;
+   margin-top: 500px;
 }
