@@ -10,8 +10,8 @@
 
 {% for application in applications %}
 
-<section class="container">
-    <ul>
+<section class="container" style="margin-top: -140px;">
+    <ul style="text-align: left;">
         <strong>Application ID:</strong> {{ application.id }}<br>
         <strong>Craeted at:</strong> {{ application.created_at }}<br>
         <strong>Pet:</strong> <a href="{% url 'animal_shelter_app:pet_detail' application.pet.pk %}">

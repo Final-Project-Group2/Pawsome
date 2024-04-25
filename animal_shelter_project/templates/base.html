@@ -18,8 +18,8 @@
     <header class="navbar">
         <div class="navbar-left">
             <div class="menu-buttons">
-                <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
-                <a class="btn btn-primary" href="{% url 'user_managment_app:shelter_list' %}">Shelters</a>
+                <a class="btn btn-primary" href="{% url 'home' %}" style="margin-left: 10px;">Home</a>
+                <a class=" btn btn-primary" href="{% url 'user_managment_app:shelter_list' %}">Shelters</a>
                 <a class="btn btn-primary" href="{% url 'animal_shelter_app:pet_list' %}">Pets</a>
                 <a class="btn btn-primary" href="{% url 'openai_app:adoption_preference' %}">Adoption preference</a>
                 <a class="btn btn-primary" href="{% url 'dashboard:dashboard' %}">Dashboard overview</a>
@@ -28,7 +28,7 @@
         <div class="navbar-right">
             {% if user.is_authenticated %}
             <ul>
-                <h2>Welcome, {{ user.username }}!</h2>
+                <h2 style="margin-right: 30px;">Welcome, {{ user.username }}!</h2>
                 {% if user.is_shelter %}
                 <a href="{% url 'user_managment_app:shelter_profile' %}" class="btn btn-primary">My profile</a>
                 <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn btn-primary">+ Add Pet</a>
@@ -63,14 +63,12 @@
         </div>
 
     </main>
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Pawsome. All rights reserved.</p>
-        </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Pawsome. All rights reserved.</p>
     </footer>
 
     <script src="{% static 'js/custom.js' %}"></script>
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
