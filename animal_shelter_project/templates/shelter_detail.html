@@ -1,77 +1,75 @@
 {% extends "base.html" %}
 {% load static %}
-
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter Detail</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
-</head>
-
-
+{% load crispy_forms_tags %}
 {% block content %}
-<section class="details-section">
-    <div class="container">
-        <h1 id="pet-list-heading">Pets in this shelter:</h1>
-        <div class="row">
+
+<div class="container">
+
+    <div class="shelter-data">
+        <h2>Shelter Detail</h2>
+        <p><strong>Email:</strong> {{ shelter.user.email }}</p>
+        <p><strong>Address:</strong> {{ shelter.user.street_address }}, {{ user.city }}, {{ user.country }}</p>
+        <p><strong>Phone Number:</strong> {{ shelter.user.phone_number }}</p>
+        <p><strong>Website:</strong> {{ profile.website }}</p>
+        <p><strong>Description:</strong> {{ profile.description }}</p>
+    </div>
+</div>
+
+<div class="container">
+    <section class="pet-section">
+        <h1>Pets in this shelter:</h1>
+        <div style="padding: 20px 20px;">
+            <form id="filter-form" method="GET"
+                style="display: flex; flex-wrap: wrap; align-items: center; background-color: #8884846e; padding: 10px;">
+                <div class="form-group" style="margin-right: 10px;">
+                    <label for="species">Species:</label>
+                    <select id="species" name="species" class="form-control">
+                        <option value="">All Species</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-right: 10px;">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" class="form-control">
+                        <option value="">All Genders</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-right: 10px;">
+                    <label for="size">Size:</label>
+                    <select id="size" name="size" class="form-control">
+                        <option value="">All Sizes</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+        </div>
+        <div class="pet-cards">
             {% for pet in pets %}
-            <div class="col-md-12">
-                <div class="pet-card">
-                    <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
+            <div class="pet-card">
+                <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
+                    <div class="pet-image">
+                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image">
+                    </div>
+                    <div class="pet-details">
                         <h3>{{ pet.name }}</h3>
                         <p>{{ pet.species }} - {{ pet.age }}</p>
-                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
             {% endfor %}
         </div>
-    </div>
-</section>
-<h2>Shelter Detail</h2>
-{% if user.is_authenticated %}
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Address:</strong> {{ user.street_address }}, {{ user.city }}, {{ user.country }}</p>
-<p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
-<p><strong>Website:</strong> {{ profile.website }}</p>
-<p><strong>Description:</strong> {{ profile.description }}</p>
-{% else %}
-<p>Login to see information about this shelter
-</p>
-<a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
-
-{% endif %}
-
-
-
-<style>
-    body {
-        background-color: #f8f9fa;
-        font-family: Arial, sans-serif;
-    }
-
-    .container {
-        margin-top: 50px;
-        text-align: center;
-    }
-
-    .pet-card {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-bottom: 60px;
-        margin-top: 50px;
-    }
-
-    .pet-image {
-        width: 250PX;
-        height: 250PX;
-        border-radius: 10px;
-        margin-top: 30px;
-    }
-</style>
+    </section>
+</div>
 
 {% endblock %}

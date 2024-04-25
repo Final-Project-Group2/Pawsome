@@ -10,68 +10,61 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customstyle.css' %}">
 </head>
 
+
 <body>
-    <header>
-        <div class="logo">
-            <img src="{% static 'img/logo.png' %}" alt="Pawsome Logo">
+    <header class="navbar">
+        <div class="navbar-left">
+            <div class="menu-buttons">
+                <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+                <a class="btn btn-primary" href="{% url 'user_managment_app:shelter_list' %}">Shelters</a>
+                <a class="btn btn-primary" href="{% url 'animal_shelter_app:pet_list' %}">Pets</a>
+                <a class="btn btn-primary" href="{% url 'openai_app:adoption_preference' %}">Adoption preference</a>
+                <a class="btn btn-primary" href="{% url 'dashboard:dashboard' %}">Dashboard overview</a>
+            </div>
         </div>
-
-        <div class="header image">
-            <img src="{% static 'img/header.png' %}" alt="animals">
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="link-opacity-10-hover" href="{% url 'home' %}"
-                        class="scroll-link">Home</a></li>
-                <li class="nav-item"><a href="{% url 'user_managment_app:shelter_list' %}">Shelters</a></li>
-                <li class="nav-item"><a href="{% url 'animal_shelter_app:pet_list' %}" class="scroll-link">Pets</a></li>
-                <li class="nav-item"><a href="{% url 'openai_app:adoption_preference' %}" class="scroll-link">Adoption
-                        preference</a></li>
-                <li class="nav-item"><a href="{% url 'dashboard:dashboard' %}" class="scroll-link">Dashboard
-                        owerview</a>
-                </li>
-
-
-                {% if not user.is_authenticated %}
-
-                <li><a href="{% url 'user_managment_app:login' %}">Log In</a></li>
-                <li><a href="{% url 'user_managment_app:signup' %}">Sign Up</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        <div class="welcome-message text-center">
+        <div class="navbar-right">
             {% if user.is_authenticated %}
-            <h2> Welcome, {{ user.username }}! </h2>
-            {% if user.is_shelter %}
-            <a href="{% url 'user_managment_app:shelter_profile' %}" class="btn btn-primary">My profile</a>
-            <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn btn-primary">+ Add Pet</a>
-            {% else %}
-            <li><a href="{% url 'user_managment_app:customuser_profile' %}">My profile</a></li>
-            {% endif %}
-            <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Log Out</button>
-            </form>
+            <ul>
+                <h2>Welcome, {{ user.username }}!</h2>
+                {% if user.is_shelter %}
+                <a href="{% url 'user_managment_app:shelter_profile' %}" class="btn btn-primary">My profile</a>
+                <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn btn-primary">+ Add Pet</a>
+                {% else %}
+                <a href="{% url 'user_managment_app:customuser_profile' %}" class="btn btn-primary">My profile</a>
+                {% endif %}
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <ul>
+                    <li><a href="{% url 'user_managment_app:login' %}">Log In</a></li>
+                    <li><a href="{% url 'user_managment_app:signup' %}">Sign Up</a></li>
+                </ul>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Log Out</button>
+                </form>
+            </ul>
             {% endif %}
         </div>
-
     </header>
 
     <main>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="logo-background"></div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-8 text-center"> <!-- Add text-center to horizontally center -->
+
                 {% block content %}
                 {% endblock %}
             </div>
         </div>
+
     </main>
-
-
-    <footer class="footer mt-auto py-3">
-        <div class="container text-center">
+    <footer>
+        <div class="footer-content">
             <p>&copy; 2024 Pawsome. All rights reserved.</p>
         </div>
     </footer>
@@ -84,25 +77,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <style>
-        .welcome-message {
-            display: flex;
-            justify-content: space-between;
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 20px;
-            text-align: center;
-            color: #333;
-        }
-
-        .welcome-message form {
-            padding: 10px;
-
-        }
-    </style>
-
 
 </body>
-
-</html>

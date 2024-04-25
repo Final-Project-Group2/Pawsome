@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from .forms import ShelterSignUpForm
 from django.db import IntegrityError
 from animal_shelter_app.models import Application
+from filters.forms import PetFilterForm
 
     
 class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -44,20 +45,33 @@ class ShelterListCreatView(generics.ListCreateAPIView):
 class ShelterDetailView(DetailView):
     model = Shelter
     template_name = "shelter_detail.html"
-    context_object_name = "profile"
+    context_object_name = "shelter"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Get the shelter object
         shelter = self.get_object()
         
         # Get all pets related to the shelter
-        pets = Pet.objects.filter(shelter=shelter, status__in=['adoptable', 'pending_adoption']) 
+        pets = Pet.objects.filter(shelter=shelter, status__in=['adoptable', 'pending_adoption'])
+
+        # Apply filtering if form is submitted
+        form = PetFilterForm(self.request.GET)
+        if form.is_valid():
+            species = form.cleaned_data.get('species')
+            gender = form.cleaned_data.get('gender')
+            size = form.cleaned_data.get('size')
+
+            if species:
+                pets = pets.filter(species=species)
+            if gender:
+                pets = pets.filter(gender=gender)
+            if size:
+                pets = pets.filter(size=size)
 
         context['pets'] = pets
-        context['user'] = self.request.user
+        context['filter_form'] = form  # Pass the form to the template
         return context
+
     
 class SignUpView(TemplateView):
     template_name = "registration/signup.html"

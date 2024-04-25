@@ -2,34 +2,33 @@
 {% load static %}
 {% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-
-<body>
+<div class="container">
     <h1>Adoption Dashboard</h1>
     <div class="charts">
-        <img src="{% static 'dashboard/adoption_chart.png' %}" alt="adoption chart" class="chart right-chart">
-        <img src="{% static 'dashboard/species_chart.png' %}" alt="species chart" class="chart left-chart">
+        <img src="{% static 'dashboard/adoption_chart.png' %}" alt="adoption chart" class="chart">
+        <img src="{% static 'dashboard/species_chart.png' %}" alt="species chart" class="chart">
     </div>
-</body>
-<style>
-    .charts {
+</div>
 
-        top: 0;
-        right: 0;
+<style>
+    .container {
+        margin-top: 20px;
+        margin-bottom: 300px;
+    }
+
+    .charts {
         display: flex;
-        /* Display the charts in a horizontal line */
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 100px;
     }
 
     .chart {
-        width: auto;
-        /* Adjust the width as needed */
+        margin-top: 50px;
+        width: 45%;
         height: auto;
-        /* Adjust the height as needed */
-        margin-left: 10px;
+        margin-bottom: 100px;
     }
 </style>
+
 {% endblock %}

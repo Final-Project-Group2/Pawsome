@@ -3,89 +3,30 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1>Adoption Preference Results</h1>
-<div>
-    <p>{{ openai_response }}</p>
+<section class="container">
+    <h1>Adoption Preference Results</h1>
+    <div>
+        <p>{{ openai_response }}</p>
 
-    <h2>Matching Pets:</h2>
-    {% if matching_pets %}
-    <ul>
-        {% for pet in matching_pets %}
-        <div class="col-md-12">
-            <div class="pet-card">
-                <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
-                    <h3>{{ pet.name }}</h3>
-                    <p>{{ pet.species }} - {{ pet.age }} - {{ pet.breeds }}</p>
-                    <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
-                </a>
+        <h2>Matching Pets:</h2>
+        {% if matching_pets %}
+        <ul>
+            <div class="pet-cards">
+                {% for pet in matching_pets %}
+                <div class="pet-card">
+                    <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
+                        <h3>{{ pet.name }}</h3>
+                        <p>{{ pet.species }} - {{ pet.age }} - {{ pet.breeds }}</p>
+                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
+                    </a>
+                </div>
             </div>
-        </div>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No matching pets found in our shelter.</p>
-    {% endif %}
-</div>
-
-<style>
-    body {
-        background-color: #f8f9fa;
-        font-family: Arial, sans-serif;
-    }
-
-    .container {
-        margin-top: 50px;
-        text-align: center;
-    }
-
-    .pet-card {
-        background-color: #fff;
-        border-radius: 20px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        margin-bottom: 50px;
-        width: 300px;
-
-    }
-
-    .pet-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 10px;
-        margin-top: 20px;
-        /* Adjusted margin to 20px */
-    }
-
-    #filter-form {
-        margin-bottom: 30px;
-        /* Add some bottom margin for spacing */
-    }
-
-    .form-row {
-        justify-content: center;
-        /* Center align form elements */
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-        /* Add some bottom margin for spacing between form groups */
-    }
-
-    .form-group label {
-        font-weight: bold;
-        /* Make form labels bold */
-    }
-
-    .form-control {
-        border-radius: 10px;
-        /* Rounded corners for form controls */
-    }
-
-    .btn-primary {
-        border-radius: 10px;
-        /* Rounded corners for the filter button */
-    }
-</style>
-
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No matching pets found in our shelter.</p>
+        {% endif %}
+    </div>
+</section>
 
 {% endblock content %}

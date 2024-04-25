@@ -3,34 +3,32 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My adoption applications</title>
-</head>
-
-<h1>My adoption applications</h1>
-<ul>
-    {% for application in applications %}
+<section class="container">
+    <h1>My adoption applications</h1>
+</section>
 
 
-    <strong>Application ID:</strong> {{ application.id }}<br>
-    <strong>Craeted at:</strong> {{ application.created_at }}<br>
-    <strong>Pet:</strong> <a href="{% url 'animal_shelter_app:pet_detail' application.pet.pk %}">
-        {{ application.pet }}</a>
-    <br>
-    <strong>User:</strong> {{ application.user.username }}<br>
-    <strong>Email:</strong> {{ application.user.email }}<br>
-    <strong>Phone number :</strong> {{ application.user.phone_number }}<br>
-    <strong>Address:</strong> {{ application.user.street_address }}, {{ application.user.city }},
-    {{ application.user.country }}<br>
-    <strong>Message:</strong> {{ application.message }}<br>
-    <strong>Status:</strong> {{ application.status }}<br>
+{% for application in applications %}
 
-    <hr>
+<section class="container">
+    <ul>
+        <strong>Application ID:</strong> {{ application.id }}<br>
+        <strong>Craeted at:</strong> {{ application.created_at }}<br>
+        <strong>Pet:</strong> <a href="{% url 'animal_shelter_app:pet_detail' application.pet.pk %}">
+            {{ application.pet }}</a>
+        <br>
+        <strong>User:</strong> {{ application.user.username }}<br>
+        <strong>Email:</strong> {{ application.user.email }}<br>
+        <strong>Phone number :</strong> {{ application.user.phone_number }}<br>
+        <strong>Address:</strong> {{ application.user.street_address }}, {{ application.user.city }},
+        {{ application.user.country }}<br>
+        <strong>Message:</strong> {{ application.message }}<br>
+        <strong>Status:</strong> {{ application.status }}<br>
 
-    {% endfor %}
-</ul>
+        <hr>
+    </ul>
+</section>
+{% endfor %}
 
 <style>
     .button-container {

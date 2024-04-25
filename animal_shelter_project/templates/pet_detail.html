@@ -1,57 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pet Detail</title>
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-
-
-
-<div class="container pet-detail">
-    <div class="row">
-        <div class="pet-photo">
+<div class="container">
+    <div class="pet-detail-wrapper">
+        <div class="pet-detail-photo">
             <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture">
-
         </div>
-        <div class="col-md-6">
+        <div class="pet-detail-text">
             <h1>Pet Detail</h1>
-            <h2>Name: {{ pet.name }}</h2>
-            <h2>Species: {{ pet.species }}</h2>
-            <h2>Breeds: {{ pet.breeds }}</h2>
-            <h2>Age: {{ pet.age }}</h2>
-            <h2>Gender: {{ pet.gender }}</h2>
-            <h2>Size: {{ pet.size }}</h2>
-            <h2>Weight: {{ pet.weight }}</h2>
-            <h2>Description: {{ pet.description }}</h2>
-            <h2>Status: {{ pet.status }}</h2>
-            <h2>Shelter: {{ pet.shelter.shelter_name }}</h2>
-
-            {% if user.is_authenticated %}
-            {% if user.is_shelter and pet.shelter_id == shelter.id %}
-            <a href="{% url 'animal_shelter_app:edit_pet_profile' pet.id %}" class="btn btn-primary">Edit Pet
-                Profile</a>
-            {% else %}
-            <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
-            {% endif %}
-            {% endif %}
-            {% if not user.is_authenticated %}
-            <h2><strong>Log In or Sign Uo to Adopt {{ pet.name }}</strong>
-                <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
-                <a href="{% url 'user_managment_app:signup' %}" class="btn btn-primary">Sign Up</a>
-            </h2>
-            {% endif %}
-
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Name:</strong> {{ pet.name }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Species:</strong> {{ pet.species }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Breeds:</strong> {{ pet.breeds }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Age:</strong> {{ pet.age }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Gender:</strong> {{ pet.gender }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Size:</strong> {{ pet.size }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Weight:</strong> {{ pet.weight }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Description:</strong> {{ pet.description }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Status:</strong> {{ pet.status }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Shelter:</strong> {{ pet.shelter.shelter_name }}
+            </p>
         </div>
+    </div>
+    <div class="pet-detail-actions" style="margin-top: 30px;">
+        {% if user.is_authenticated %}
+        {% if user.is_shelter and pet.shelter_id == shelter.id %}
+        <a href="{% url 'animal_shelter_app:edit_pet_profile' pet.id %}" class="btn btn-primary">Edit Pet Profile</a>
+        {% else %}
+        <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
+        {% endif %}
+        {% else %}
+        <p><strong>Log In or Sign Up to Adopt {{ pet.name }}</strong></p>
+        <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
+        <a href="{% url 'user_managment_app:signup' %}" class="btn btn-primary">Sign Up</a>
+        {% endif %}
     </div>
 </div>
 
 <style>
-    .pet-photo {
-        width: 300px;
-        height: 300px;
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content-wrapper {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        flex-grow: 1;
     }
 </style>
+
 {% endblock %}
