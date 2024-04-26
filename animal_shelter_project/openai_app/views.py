@@ -18,6 +18,9 @@ class AdoptionPreferenceFormView(FormView):
         
         # Interact with the OpenAI API to get recommendations
         openai_response = get_openai_response(openai_query)
+        print(openai_response)
+
+        breeds = openai_response.split('\n')
 
         all_pets = Pet.objects.all()
         
@@ -32,6 +35,6 @@ class AdoptionPreferenceFormView(FormView):
 
 
         return render(self.request, 'adoption_preference_result.html', {
-            'openai_response': openai_response,
+            'openai_response': breeds,
             'matching_pets': matching_pets
         })

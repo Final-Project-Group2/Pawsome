@@ -5,9 +5,18 @@
 
 <section class="container">
     <h1>Adoption Preference Results</h1>
-    <div>
-        <p>{{ openai_response }}</p>
 
+</section>
+
+
+<div>
+    {% for breed in openai_response %}
+    <section class="container" style="margin-top: -140px;">
+        <p>{{ breed}}</p>
+    </section>
+    {% endfor %}
+
+    <section class="container" style="margin-top: -140px;">
         <h2>Matching Pets:</h2>
         {% if matching_pets %}
         <ul>
@@ -26,7 +35,7 @@
         {% else %}
         <p>No matching pets found in our shelter.</p>
         {% endif %}
-    </div>
+</div>
 </section>
 
 {% endblock content %}

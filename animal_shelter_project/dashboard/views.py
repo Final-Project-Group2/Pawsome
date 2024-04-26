@@ -13,6 +13,7 @@ def dashboard_view(request):
     applications = Application.objects.all()
     pets = Pet.objects.all()
 
+
     #Diagram 1:
 
     months_adopt = []
@@ -27,18 +28,21 @@ def dashboard_view(request):
     for p in pets:
         month_integer = p.published_at.month
         months_add.append(month_integer)
+    print(months_add)
 
     count_adopt = Counter(months_adopt)
     count_add = Counter(months_add)
-
+    print(count_add)
     print(count_adopt)
 
     months = [_ for _ in range(1, 13)]
     m_adopt_list = sorted(list(count_adopt.keys()))
-    m_add_list = sorted(list(count_adopt.keys()))
+    m_add_list = sorted(list(count_add.keys()))
     adopt_per_ponth = ()
     add_per_ponth = ()
     count_add_adopt = {}
+
+    print('sortd', m_add_list)
 
 
     for mnth in months:
@@ -52,11 +56,12 @@ def dashboard_view(request):
             add_per_ponth += (count_add[mnth],)
         else:
             add_per_ponth += (0,)
+    
+    print(add_per_ponth)
 
     count_add_adopt = {
     'adopt_per_month': adopt_per_ponth,
-    'add_per_month': add_per_ponth
-}
+    'add_per_month': add_per_ponth}
 
     width = 0.6 
 
