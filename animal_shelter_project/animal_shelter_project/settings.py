@@ -9,21 +9,25 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+from .data import data
+from .utils import dispatch
 
+DISPATCH=dispatch
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(os.path.join(BASE_DIR,'.env'))
 #Defines the absolute filesystem path to the directory for images
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/' # added by mohsen
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o7)s^@q=p%o(i_k1#n)nb^s30&@!mn0%d&c^q^bl-jgymi!#+0'
+SECRET_KEY = os.environ.get("SECRET_KEY_FRONTAND",data["SECRET_KEY_FRONTAND"])
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,9 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    "crispy_forms",
+    "crispy_bootstrap5",
     "rest_framework",
     'animal_shelter_app.apps.AnimalShelterAppConfig',
-    'user_managment_app.apps.UserManagmentAppConfig'
+    'user_managment_app.apps.UserManagmentAppConfig',
+    #'openai_app.apps.OpenaiAppConfig',
+    'dashboard.apps.DashboardConfig',
+    'filters',
 ]
 
 REST_FRAMEWORK = {
@@ -67,7 +76,7 @@ ROOT_URLCONF = 'animal_shelter_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,14 +95,23 @@ WSGI_APPLICATION = 'animal_shelter_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'mohsen',
+#        'USER': 'postgres',
+#        'PASSWORD': '1234',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -128,7 +146,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+#STATIC_URL = 'Pawsome/animal_shelter_project/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -136,3 +154,28 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_managment_app.CustomUser'
+
+#AUTHENTICATION_BACKENDS = [
+    #'django.contrib.auth.backends.ModelBackend',  # Default Django authentication backend
+    #'user_managment_app.auth_backend.ShelterBackend',  # Custom authentication backend for Shelter model
+#]
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
+
+#STATIC_ROOT = os.path.join (BASE_DIR, "static")
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+#STATICFILES_DIRS = [os.path.join(BASE_DIR,'/static/')]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
+#137-140 added by mohsen
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     )
+# }
+
